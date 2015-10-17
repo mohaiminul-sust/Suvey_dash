@@ -2,8 +2,7 @@
 
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
-Back-end application and admin/superuser dashboard in Laravel 4.2
-Survey
+Back-end application and admin/superuser dashboard in Laravel 4 Survey App
 
 ### Contributing To this project
 
