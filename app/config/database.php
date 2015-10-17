@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'sust_admission',
+			'database'  => 'survey_dash',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',

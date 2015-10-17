@@ -9,10 +9,16 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run()
 	{
+		
 		Eloquent::unguard();
 
-		$this->call('RolesTableSeeder');
+		$this->call('AdminUsersTableSeeder');
+		$this->command->info('Admin Users Table Seeded !');
+
 		$this->call('UsersTableSeeder');
+		$this->command->info('Users Table Seeded !');
+		
+
 	}
 
 }
