@@ -13,7 +13,7 @@
 
 Route::get('/', ['as'=>'index','uses' => 'PublicController@home']);
 
-Route::controller('password', 'RemindersController');
+// Route::controller('password', 'RemindersController');
 
 Route::group(['before' => 'guest'], function (){
 	Route::get('login', ['as'=>'login','uses' => 'UserController@showLogin']);

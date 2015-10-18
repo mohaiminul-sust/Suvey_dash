@@ -4,7 +4,7 @@
               <div data-original-title="Toggle Navigation" data-placement="right" class="fa fa-bars tooltips"></div>
           </div>
           <!--logo start-->
-          <a href="/" class="logo" >Flat<span>lab</span></a>
+          <a href="{{ URL::route('dashboard') }}" class="logo" >messive<span>lab</span></a>
           <!--logo end-->
           <div class="nav notify-row" id="top_menu">
             <!--  notification start -->
@@ -220,8 +220,8 @@
                   <!-- user login dropdown start-->
                   <li class="dropdown">
                       <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                          <img alt="{{ Auth::user()->email }}" src="img/avatar1_small.jpg">
-                          <span class="username">{{ Auth::user()->email }}</span>
+                          <img alt="{{ Auth::user()->username }}" src="img/avatar1_small.jpg">
+                          <span class="username">{{ Auth::user()->username }}</span>
                           <b class="caret"></b>
                       </a>
                       <ul class="dropdown-menu extended logout">

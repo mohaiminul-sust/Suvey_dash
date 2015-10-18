@@ -12,11 +12,8 @@ class UserController extends BaseController{
 	public function doLogin(){
 		
 		$validation = Validator::make(Input::all(), User::$rules);
-
 		
 		if($validation->passes()){
-
-
 
 			$credentials = [
 				'username'	=>	Input::get('username'),
@@ -34,7 +31,7 @@ class UserController extends BaseController{
 			{
 				return Redirect::route('login')
 					->withInput()
-					->withErrors('Error in Email Address or Password.');
+					->withErrors('Wrong Email Address or Password !');
 			}
 
 		}

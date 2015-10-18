@@ -1,4 +1,4 @@
-<!--sidebar start-->
+sidebar start-->
       <aside>
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
@@ -12,34 +12,23 @@
 
                   <li class="sub-menu">
                       <a href="javascript:;">
-                          <i class="fa fa-laptop"></i>
-                          <span>Layouts</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="boxed_page.html">Boxed Page</a></li>
-                          <li><a  href="horizontal_menu.html">Horizontal Menu</a></li>
-                          <li><a  href="language_switch_bar.html">Language Switch Bar</a></li>
-                          <li><a  href="email_template.html" target="_blank">Email Template</a></li>
-                      </ul>
-                  </li>
-
-                  <li class="sub-menu">
-                      <a href="javascript:;">
                           <i class="fa fa-book"></i>
-                          <span>UI Elements</span>
+                          <span>Surveys</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="general.html">General</a></li>
-                          <li><a  href="buttons.html">Buttons</a></li>
-                          <li><a  href="widget.html">Widget</a></li>
-                          <li><a  href="slider.html">Slider</a></li>
-                          <li><a  href="nestable.html">Nestable</a></li>
-                          <li><a  href="tree.html">Tree View</a></li>
-                          <li><a  href="font_awesome.html">Font Awesome</a></li>
+                          <li><a  href="#">Add a Survey</a></li>
+                          <li><a  href="#">Manage Surveys</a></li>
                       </ul>
                   </li>
 
                   <li class="sub-menu">
+                      <a href="#">
+                          <i class="fa fa-user"></i>
+                          <span>Guests</span>
+                      </a>
+                  </li>
+
+                 {{--  <li class="sub-menu">
                       <a href="javascript:;">
                           <i class="fa fa-cogs"></i>
                           <span>Components</span>
@@ -51,8 +40,10 @@
                           <li><a  href="todo_list.html">Todo List</a></li>
                           <li><a  href="draggable_portlet.html">Draggable Portlet</a></li>
                       </ul>
-                  </li>
-                  <li class="sub-menu">
+                  </li> --}}
+
+
+                  {{-- <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-tasks"></i>
                           <span>Form Stuff</span>
@@ -67,8 +58,10 @@
                           <li><a  href="image_cropping.html">Image Cropping</a></li>
                           <li><a  href="file_upload.html">Multiple File Upload</a></li>
                       </ul>
-                  </li>
-                  <li class="sub-menu">
+                  </li> --}}
+
+
+                  {{-- <li class="sub-menu">
                       <a href="javascript:;">
                           <i class="fa fa-th"></i>
                           <span>Data Tables</span>
@@ -79,8 +72,9 @@
                           <li><a  href="dynamic_table.html">Dynamic Table</a></li>
                           <li><a  href="editable_table.html">Editable Table</a></li>
                       </ul>
-                  </li>
-                  <li class="sub-menu">
+                  </li> --}}
+
+                  {{-- <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class=" fa fa-envelope"></i>
                           <span>Mail</span>
@@ -89,8 +83,9 @@
                           <li><a  href="inbox.html">Inbox</a></li>
                           <li><a  href="inbox_details.html">Inbox Details</a></li>
                       </ul>
-                  </li>
-                  <li class="sub-menu">
+                  </li> --}}
+                  
+                  {{-- <li class="sub-menu">
                       <a href="javascript:;">
                           <i class=" fa fa-bar-chart-o"></i>
                           <span>Charts</span>
@@ -102,7 +97,8 @@
                           <li><a  href="xchart.html">xChart</a></li>
                       </ul>
                   </li>
-                  <li class="sub-menu">
+ --}}
+                  {{-- <li class="sub-menu">
                       <a href="javascript:;">
                           <i class="fa fa-shopping-cart"></i>
                           <span>Shop</span>
@@ -111,14 +107,16 @@
                           <li><a  href="product_list.html">List View</a></li>
                           <li><a  href="product_details.html">Details View</a></li>
                       </ul>
-                  </li>
-                  <li>
+                  </li> --}}
+                  
+                  {{-- <li>
                       <a href="google_maps.html" >
                           <i class="fa fa-map-marker"></i>
                           <span>Google Maps </span>
                       </a>
-                  </li>
-                  <li class="sub-menu">
+                  </li> --}}
+
+                  {{-- <li class="sub-menu">
                       <a href="javascript:;">
                           <i class="fa fa-comments-o"></i>
                           <span>Chat Room</span>
@@ -128,7 +126,10 @@
                           <li><a  href="chat_room.html"> Chat Room</a></li>
                       </ul>
                   </li>
-                  <li class="sub-menu">
+ --}}
+
+
+                  {{-- <li class="sub-menu">
                       <a href="javascript:;" class="active" >
                           <i class="fa fa-glass"></i>
                           <span>Extra</span>
@@ -149,15 +150,19 @@
                           <li><a  href="500.html">500 Error</a></li>
                       </ul>
                   </li>
-                  <li>
-                      <a  href="login.html">
+ --}}
+
+                  {{-- <li>
+                      <a  href="{{ Url::route('login') }}">
                           <i class="fa fa-user"></i>
                           <span>Login Page</span>
                       </a>
-                  </li>
+                  </li> --}}
+
 
                   <!--multi level menu start-->
-                  <li class="sub-menu">
+
+                {{--   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-sitemap"></i>
                           <span>Multi level Menu</span>
@@ -178,11 +183,11 @@
                               </ul>
                           </li>
                       </ul>
-                  </li>
+                  </li> --}}
                   <!--multi level menu end-->
 
               </ul>
               <!-- sidebar menu end-->
           </div>
       </aside>
-      <!--sidebar end-->
+      <!--sidebar end

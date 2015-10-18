@@ -1,7 +1,7 @@
 <!--footer start-->
       <footer class="site-footer">
           <div class="text-center">
-              {{Date('Y')}} &copy; SUST CSE
+              {{Date('Y')}} &copy; {{ Config::get('customConfig.siteName') }}
               <a href="#" class="go-top">
                   <i class="fa fa-angle-up"></i>
               </a>

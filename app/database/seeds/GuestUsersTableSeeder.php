@@ -11,8 +11,11 @@ class GuestUsersTableSeeder extends Seeder {
         for ($i=0; $i < 5; $i++) { 
             
             GuestUser::create([
+
                 'username' => $faker->name,
-                'password' => Hash::make('guestpass')
+                'password' => Hash::make('guestpass'),
+                'access_token' => Hash::make($faker->word),
+            
             ]);
 
         }
