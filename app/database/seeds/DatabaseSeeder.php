@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('GuestUsersTableSeeder');
 		$this->command->info('Guest Users Table Seeded !');
 		
-
+		
 	}
 
 }

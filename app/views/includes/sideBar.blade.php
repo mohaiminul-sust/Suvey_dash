@@ -21,11 +21,14 @@ sidebar start-->
                       </ul>
                   </li>
 
-                  <li class="sub-menu">
+                  <li class="javascript:;">
                       <a href="#">
                           <i class="fa fa-user"></i>
                           <span>Guests</span>
                       </a>
+                      <ul>
+                        <li><a href="#">All guests</a></li>
+                      </ul>
                   </li>
 
                  {{--  <li class="sub-menu">

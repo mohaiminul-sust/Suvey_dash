@@ -17,11 +17,11 @@ Route::get('/', ['as'=>'index','uses' => 'PublicController@home']);
 
 Route::group(['before' => 'guest'], function (){
 	Route::get('login', ['as'=>'login','uses' => 'UserController@showLogin']);
-	Route::post('login', ['uses' => 'UserController@doLogin']);
+	Route::post('login', ['as' => 'login','uses' => 'UserController@doLogin']);
 });
 
-Route::group(array('before' => 'auth'), function(){
+Route::group(['before' => 'auth'], function(){
 	Route::get('logout', ['as' => 'logout', 'uses' => 'UserController@doLogout']);
-	Route::get('dashboard', array('as' => 'dashboard', 'uses' => 'DashboardController@index'));
+	Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 	Route::get('resetpass', ['as' => 'resetPassword', 'uses' => 'UserController@resetPassword']);
 });
