@@ -12,13 +12,23 @@ class DatabaseSeeder extends Seeder {
 		
 		Eloquent::unguard();
 
+
+		$this->call('RolesTableSeeder');
+		$this->command->info('Roles Table Seeded !');
+
 		$this->call('AdminUsersTableSeeder');
 		$this->command->info('Admin Users Table Seeded !');
 
-		$this->call('GuestUsersTableSeeder');
-		$this->command->info('Guest Users Table Seeded !');
-		
-		
+		$this->call('SurveysTableSeeder');
+		$this->command->info('Surveys Table Seeded !');
+
+		$this->call('UsersTableSeeder');
+		$this->command->info('Users Table Seeded !');
+
+		$this->call('TrackSurveysTableSeeder');
+		$this->command->info('Track Surveys Table Seeded !');
+
+
 	}
 
 }
