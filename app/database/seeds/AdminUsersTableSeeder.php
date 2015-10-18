@@ -6,15 +6,11 @@ class AdminUsersTableSeeder extends Seeder {
     {
         DB::table('admin_users')->delete();
 
-        $user = [
+        User::create([
             'username'    =>  'admin',
-            'password'      =>  Hash::make('admindev'),
-            
-            'created_at'    =>  date('Y-m-d H:i:s'),
-            'updated_at'    =>  date('Y-m-d H:i:s')
-        ];
+            'password'      =>  Hash::make('admindev')
+        ]);
 
-        DB::table('admin_users')->insert($user);
     }
 
 }

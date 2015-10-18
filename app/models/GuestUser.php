@@ -2,6 +2,8 @@
 
 class GuestUser extends \Eloquent {
 	
+	protected $table = 'users';
+
 	protected $fillable = ['username'];
 
 	public static $rules = [

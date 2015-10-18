@@ -9,12 +9,10 @@ class GuestUsersTableSeeder extends Seeder {
         $faker = Faker\Factory::create();
 
         for ($i=0; $i < 5; $i++) { 
+            
             GuestUser::create([
                 'username' => $faker->name,
-                'password' => Hash::make('guestpass'),
-
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' =>  date('Y-m-d H:i:s')
+                'password' => Hash::make('guestpass')
             ]);
 
         }

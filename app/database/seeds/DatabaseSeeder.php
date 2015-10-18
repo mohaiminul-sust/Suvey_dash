@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder {
 		$this->call('AdminUsersTableSeeder');
 		$this->command->info('Admin Users Table Seeded !');
 
-		$this->call('UsersTableSeeder');
-		$this->command->info('Users Table Seeded !');
+		$this->call('GuestUsersTableSeeder');
+		$this->command->info('Guest Users Table Seeded !');
 		
 
 	}

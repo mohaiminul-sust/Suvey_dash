@@ -16,11 +16,12 @@ Route::get('/', ['as'=>'index','uses' => 'PublicController@home']);
 Route::controller('password', 'RemindersController');
 
 Route::group(['before' => 'guest'], function (){
-	Route::get('login', ['as'=>'login','uses' => 'UserController@login']);
-	Route::post('login', array('uses' => 'UserController@doLogin'));
+	Route::get('login', ['as'=>'login','uses' => 'UserController@showLogin']);
+	Route::post('login', ['uses' => 'UserController@doLogin']);
 });
 
 Route::group(array('before' => 'auth'), function(){
-	Route::get('logout', ['as' => 'logout', 'uses' => 'UserController@logout']);
+	Route::get('logout', ['as' => 'logout', 'uses' => 'UserController@doLogout']);
 	Route::get('dashboard', array('as' => 'dashboard', 'uses' => 'DashboardController@index'));
+	Route::get('resetpass', ['as' => 'resetPassword', 'uses' => 'UserController@resetPassword']);
 });

@@ -3,29 +3,30 @@
 
 @section('content')
    
-    {{ Form::open(array('route' => 'login', 'method' => 'post', 'class' => 'form-signin')) }}
+    {{ Form::open(['route' => 'login', 'method' => 'post', 'class' => 'form-signin']) }}
 
         <h2 class="form-signin-heading">log in now</h2>
-
+        
         <div class="login-wrap">
             @include('includes.alert')
 
-            {{ Form::text('email', '', array('class' => 'form-control', 'placeholder' => 'Email Address', 'autofocus')) }}
-            {{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'Password')) }}
+            {{ Form::text('username', '',['class' => 'form-control', 'placeholder' => 'Enter Username', 'autofocus']) }}
+            {{ Form::password('password', ['class' => 'form-control', 'placeholder' => '********']) }}
 
-            <label class="checkbox">
+            {{-- <label class="checkbox">
                 <span class="pull-right">
                     <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
                 </span>
-            </label>
-            {{ Form::submit('Log in', array('class' => 'btn btn-lg btn-login btn-block')) }}
+            </label> --}}
+            {{ Form::submit('Log in', ['class' => 'btn btn-lg btn-login btn-block']) }}
         </div>
 
     {{ Form::close() }}
 
+{{-- 
     <!--  Modal -->
 
-    {{ Form::open(array('action' => 'RemindersController@postRemind', 'method' => 'post', 'class' => 'form-signin')) }}
+    {{ Form::open(array('route' => 'resetPassword', 'method' => 'get', 'class' => 'form-signin')) }}
 
         <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
          <div class="modal-dialog">
@@ -35,8 +36,7 @@
                      <h4 class="modal-title">Forgot Password ?</h4>
                  </div>
                  <div class="modal-body">
-                     <p>Enter your e-mail address below to reset your password.</p>
-                     <input type="email" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+                     <p>Click reset button below to reset your password.</p>
                  </div>
                  <div class="modal-footer">
                      <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
@@ -48,5 +48,5 @@
         </div>
 
     {{ Form::close() }}
-
+ --}}
 @stop
