@@ -27,7 +27,7 @@ class UserController extends BaseController{
 			if (Auth::attempt($credentials))
 			{
 
-			    return Redirect::intended('dashboard');
+			    return Redirect::intended('dashboard')->withInfo(Auth::user()->username.' logged in successfully!');
 
 			}
 			else
