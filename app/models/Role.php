@@ -10,4 +10,8 @@ class Role extends \Eloquent {
 		'type' => 'required|min:3'
 	];
 
+	public function user(){
+		return $this->belongsTo('User');
+	}
+
 }

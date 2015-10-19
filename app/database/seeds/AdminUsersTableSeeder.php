@@ -13,14 +13,14 @@ class AdminUsersTableSeeder extends Seeder {
         
         User::create([
             'username'    =>  'admin',
-            'password'    =>  Hash::make('admindev'),
+            'password'    =>  Hash::make('adminsuper'),
          	'roles_id'    =>  $super_admin_role_id
         ]);
 
         foreach (range(1, 5) as $i) {
 			User::create([
 	            'username'    =>  $faker->firstname,
-	            'password'    =>  Hash::make('admin'),
+	            'password'    =>  Hash::make('admindev'),
 	         	'roles_id'    =>  $admin_role_id
 	        ]);        	
         }
