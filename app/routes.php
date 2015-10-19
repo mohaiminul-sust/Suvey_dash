@@ -25,3 +25,11 @@ Route::group(['before' => 'auth'], function(){
 	Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 	Route::get('resetpass', ['as' => 'resetPassword', 'uses' => 'UserController@resetPassword']);
 });
+
+Route::group(['before' => 'auth'], function(){
+
+	Route::group(['prefix' => 'surveys'], function(){
+		Route::get('/', ['as' => 'surveys', 'uses' => 'SurveyController@index']);
+	});
+
+});

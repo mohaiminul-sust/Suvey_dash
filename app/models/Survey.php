@@ -10,4 +10,16 @@ class Survey extends \Eloquent {
 		'title' => 'required|min:5'
 	];
 
+	public function getSurveyCreatedDate(){
+
+	    return $this->created_at->format('d.m.Y');
+	
+	}
+
+	public function getSurveyUpdatedDate(){
+
+	    return $this->updated_at->format('d.m.Y');
+	
+	}
+
 }

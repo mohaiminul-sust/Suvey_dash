@@ -3,32 +3,27 @@ sidebar start-->
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
-                  <li>
-                      <a href="index.html">
+                  @if (Auth::user()->roles_id == Role::where('type', 'super_admin')->first()->id)
+                    <li>
+                      <a href="#">
                           <i class="fa fa-dashboard"></i>
-                          <span>Dashboard</span>
+                          <span>Super Admin Controls</span>
+                      </a>
+                    </li>
+                  @endif
+
+                  <li class="sub-menu">
+                      <a href="{{ URL::route('surveys') }}">
+                          <i class="fa fa-book"></i>
+                          <span>Surveys</span>
                       </a>
                   </li>
 
                   <li class="sub-menu">
-                      <a href="javascript:;">
-                          <i class="fa fa-book"></i>
-                          <span>Surveys</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="#">Add a Survey</a></li>
-                          <li><a  href="#">Manage Surveys</a></li>
-                      </ul>
-                  </li>
-
-                  <li class="javascript:;">
                       <a href="#">
                           <i class="fa fa-user"></i>
                           <span>Guests</span>
                       </a>
-                      <ul>
-                        <li><a href="#">All guests</a></li>
-                      </ul>
                   </li>
 
                  {{--  <li class="sub-menu">

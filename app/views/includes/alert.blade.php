@@ -27,10 +27,10 @@
 @endif
 
 @if (!$errors->isEmpty())
-<div class="alert alert-danger alert-dismissable fade in">
-  	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-  	@foreach($errors->all() as $error)
-  		{{ $error }}<br/>
-  	@endforeach
-</div>
+	<div class="alert alert-danger alert-dismissable fade in">
+	  	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	  	@foreach($errors->all() as $error)
+	  		{{ $error }}<br/>
+	  	@endforeach
+	</div>
 @endif
