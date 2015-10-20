@@ -26,9 +26,9 @@ class SurveyController extends BaseController{
 		return View::make('survey.show')->withProduct(Product::find($id));
 	}
 
-	public function renameSurvey($id){
-		$survey = Survey::find($id);
-		$survey->title = Input::get('survey_title');
+	public function renameSurvey(){
+		$survey = Survey::find(Input::get('surveyId'));
+		$survey->title = Input::get('surveyTitle');
 		$survey->save();
 
 		return Redirect::back()->withSuccess('Survey renamed to \''.$survey->title.'\'');
