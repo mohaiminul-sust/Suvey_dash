@@ -24,7 +24,7 @@ sidebar start-->
 
                   <li class="sub-menu">
                       <a href="#">
-                          <i class="fa fa-user"></i>
+                          <i class="fa fa-users"></i>
                           <span>Guests</span>
                       </a>
                   </li>

@@ -27,7 +27,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public static $rules = [
 		'username' => 'required|min:3',
-		'password' => 'required|alpha_num|between:8,12'
+		'password' => 'required|alpha_num|between:8,12|confirmed',
+		'password_confirmation' => 'required|alpha_num|between:8,12'
 	];
 
 	public function getAdminCreatedDate(){

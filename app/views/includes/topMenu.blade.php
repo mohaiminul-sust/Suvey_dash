@@ -214,13 +214,14 @@
           </div>
           <div class="top-nav ">
               <ul class="nav pull-right top-menu">
-                  <li>
+                  {{-- <li>
                       <input type="text" class="form-control search" placeholder="Search">
-                  </li>
+                  </li> --}}
                   <!-- user login dropdown start-->
                   <li class="dropdown">
                       <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                          {{ HTML::image('img/avatar1_small.jpg', Auth::user()->username); }}
+                          {{-- {{ HTML::image('img/avatar1_small.jpg', Auth::user()->username); }} --}}
+                          <i class="fa fa-user"></i>
                           <span class="username">{{ Auth::user()->username }}</span>
                           <b class="caret"></b>
                       </a>
