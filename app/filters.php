@@ -78,8 +78,8 @@ Route::filter('admin', function()
 
 	if (!Auth::check() || Auth::user()->roles_id != Role::where('type', 'admin')->first()->id){
 		
-		// return Redirect::to('/')->with('warning','Unauthorized access prohibited !!! Sign in with an account that has admin privilages.');
-		return 'kabikha  '.Auth::user()->roles_id.'  '.Role::where('type', 'admin')->first()->id;
+		return Redirect::route('dashboard')->withWarning('Unauthorized access prohibited !!! Log in with an account that has admin privilages.');
+		// return 'kabikha  '.Auth::user()->roles_id.'  '.Role::where('type', 'admin')->first()->id;
 	}
 });
 
@@ -89,8 +89,8 @@ Route::filter('super_admin', function()
 {
 	if (!Auth::check() || Auth::user()->roles_id != Role::where('type', 'super_admin')->first()->id){
 		
-		// return Redirect::to('/')->withInfo('Unauthorized access prohibited !!! Sign in with an account that has super admin privilages.');
-		return 'batabi kha  '.Auth::user()->roles_id.'  '.Role::where('type', 'super_admin')->first()->id;
+		return Redirect::route('dashboard')->withWarning('Unauthorized access prohibited !!! Log in with an account that has super admin privilages.');
+		// return 'batabi kha  '.Auth::user()->roles_id.'  '.Role::where('type', 'super_admin')->first()->id;
 	}
 });
 /*

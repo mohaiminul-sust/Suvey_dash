@@ -15,7 +15,7 @@
 	      <thead>
 	      <tr>
 	          <th>Survey Name</th>
-	          <th></th>
+	          <th>Customize</th>
 	      </tr>
 	      </thead>
 	      <tbody>

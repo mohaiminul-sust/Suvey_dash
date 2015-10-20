@@ -20,4 +20,4 @@
     {{ HTML::script('js/slidebars.min.js') }}
   	{{ HTML::script('js/common-scripts.js') }}
   	@yield('script')
-  	{{ HTML::script('js/custom.js') }}
+  	{{-- {{ HTML::script('js/custom.js') }} --}}

@@ -234,9 +234,9 @@
                   </li>
 
                   <!-- user login dropdown end -->
-                  <li class="sb-toggle-right">
+                  {{-- <li class="sb-toggle-right">
                       <i class="fa  fa-align-right"></i>
-                  </li>
+                  </li> --}}
               </ul>
           </div>
       </header>

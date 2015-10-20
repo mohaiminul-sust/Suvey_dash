@@ -18,7 +18,7 @@
         </section>
         <!--main content end-->
 
-        @include('includes.rightSlideBar')
+        {{-- @include('includes.rightSlideBar') --}}
         @include('includes.footer')
         
     

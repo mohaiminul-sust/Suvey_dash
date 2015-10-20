@@ -17,14 +17,14 @@
 	      <tr>
 	          <th>Username</th>
 	          <th>Surveys Created</th>
-	          <th></th> {{-- controls --}}
+	          <th>Customize</th> {{-- controls --}}
 	      </tr>
 	      </thead>
 	      <tbody>
 	      @foreach ($admins as $admin)
 	      	<tr>
 	          <td class="p-name">
-	              <a href="#">{{ $admin->username }}</a>
+	              {{ $admin->username }}
 	              <br>
 	              <small>Created {{ $admin->getAdminCreatedDate() }} Updated {{ $admin->getAdminUpdatedDate() }}</small>
 	          </td>
