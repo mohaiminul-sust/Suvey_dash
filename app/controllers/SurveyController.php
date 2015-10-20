@@ -26,7 +26,7 @@ class SurveyController extends BaseController{
 		return View::make('survey.show')->withProduct(Product::find($id));
 	}
 
-	public function renameSurvey(){
+	public function rename(){
 		$survey = Survey::find(Input::get('surveyId'));
 		$survey->title = Input::get('surveyTitle');
 		$survey->save();
@@ -34,16 +34,16 @@ class SurveyController extends BaseController{
 		return Redirect::back()->withSuccess('Survey renamed to \''.$survey->title.'\'');
 	}
 
-	public function destroy($id){
+	public function destroy(){
 
-		$survey = Survey::find($id);
+		$survey = Survey::find(Input::get('surveyId'));
 
 		if($survey){
 			$survey->delete();
-			return Redirect::back()->withInfo('Survey entry deleted!');
+			return Redirect::back()->withSuccess('Survey entry deleted!');
 		}
 
-		return Redirect::back()->withInfo('Survey can\'t be deleted!!');
+		return Redirect::back()->withError('Survey can\'t be deleted!!');
 	}
 
 }

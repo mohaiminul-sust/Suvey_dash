@@ -30,7 +30,9 @@ Route::group(['before' => 'auth'], function(){
 
 	Route::group(['prefix' => 'surveys'], function(){
 		Route::get('/', ['as' => 'surveys', 'uses' => 'SurveyController@index']);
-		Route::post('/rename', ['as' => 'renameSurvey', 'uses' => 'SurveyController@renameSurvey']);
+		Route::post('/rename', ['as' => 'renameSurvey', 'uses' => 'SurveyController@rename']);
+		Route::post('/destroy', ['as' => 'destroySurvey', 'uses' => 'SurveyController@destroy']);
+		
 	});
 
 });

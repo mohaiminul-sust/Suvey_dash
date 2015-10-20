@@ -11,6 +11,7 @@
 	          <a href="#" class=" btn btn-success btn-xs"> Create New Surveys</a>
 	      </span>
 	  </header>
+	  {{-- search panel --}}
 	  {{-- <div class="panel-body">
 	      <div class="row">
 
@@ -38,7 +39,7 @@
 	          <td>
 	              {{-- <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a> --}}
 	              <a data-toggle="modal" href="#renameModal" data-survey-id= "{{ $survey->id }}" data-survey-title="{{ $survey->title }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Rename </a>
-	              <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+	              <a data-toggle="modal" href="#deleteConfModal" data-survey-id="{{ $survey->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
 	          </td>
 	        </tr>
 	      @endforeach
@@ -76,29 +77,30 @@
     {{ Form::close() }}
 
     {{-- delete confirmation modal --}}
-	{{-- {{ Form::open(array('route' => ['destroySurvey', $survey->id], 'method' => 'post', 'class' => 'form-signin')) }} --}}
+	{{ Form::open(array('route' => ['destroySurvey'], 'method' => 'post', 'class' => 'form-signin')) }}
 
-        {{-- <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="deleteConfModal" class="modal fade">
+        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade" id="deleteConfModal">
          <div class="modal-dialog">
              <div class="modal-content">
                  <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                     <h4 class="modal-title">Rename Survey</h4>
+                     <h4 class="modal-title">Delete Survey</h4>
                  </div>
                  <div class="modal-body">
-                     <p>Enter new title for the survey below</p>
-                     <input type="text" name="survey_title" placeholder="" autocomplete="off" class="form-control placeholder-no-fix">
+                     <p>Are you sure you want to delete the survey?</p>
+                     {{-- <input type="text" name="surveyTitle" value="" autocomplete="off" class="form-control placeholder-no-fix"> --}}
+                     <input type="hidden" name="surveyId" value="">
                  </div>
                  <div class="modal-footer">
                      <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                     {{ Form::submit('Rename', array('class' => 'btn btn-success')) }}
+                     {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
                     <!--  <button class="btn btn-success" type="button">Submit</button> -->
                  </div>
              </div>
          </div>
-        </div> --}}
+        </div>
 
-    {{-- {{ Form::close() }} --}}
+    {{ Form::close() }}
 @stop
 
 @section('script')
@@ -109,6 +111,11 @@
 			var surveyTitle = $(e.relatedTarget).data('survey-title');
 			$(e.currentTarget).find('input[name="surveyId"]').val(surveyId);
 			$(e.currentTarget).find('input[name="surveyTitle"]').val(surveyTitle);
+		});
+
+		$('#deleteConfModal').on("show.bs.modal", function(e) {
+			var surveyId = $(e.relatedTarget).data('survey-id');
+			$(e.currentTarget).find('input[name="surveyId"]').val(surveyId);
 		});
 
 	</script>
