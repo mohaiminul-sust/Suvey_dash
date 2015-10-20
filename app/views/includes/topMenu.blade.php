@@ -1,4 +1,4 @@
-<!--header start-->
+{{-- header start --}}
       <header class="header white-bg">
           <div class="sidebar-toggle-box">
               <div data-original-title="Toggle Navigation" data-placement="right" class="fa fa-bars tooltips"></div>
@@ -10,7 +10,7 @@
             <!--  notification start -->
             <ul class="nav top-menu">
               <!-- settings start -->
-              <li class="dropdown">
+              {{-- <li class="dropdown">
                   <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                       <i class="fa fa-tasks"></i>
                       <span class="badge bg-success">6</span>
@@ -90,10 +90,10 @@
                           <a href="#">See All Tasks</a>
                       </li>
                   </ul>
-              </li>
+              </li> --}}
               <!-- settings end -->
               <!-- inbox dropdown start-->
-              <li id="header_inbox_bar" class="dropdown">
+              {{-- <li id="header_inbox_bar" class="dropdown">
                   <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                       <i class="fa fa-envelope-o"></i>
                       <span class="badge bg-important">5</span>
@@ -155,10 +155,10 @@
                           <a href="#">See all messages</a>
                       </li>
                   </ul>
-              </li>
+              </li> --}}
               <!-- inbox dropdown end -->
               <!-- notification dropdown start-->
-              <li id="header_notification_bar" class="dropdown">
+              {{-- <li id="header_notification_bar" class="dropdown">
                   <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
                       <i class="fa fa-bell-o"></i>
@@ -208,7 +208,7 @@
                           <a href="#">See all notifications</a>
                       </li>
                   </ul>
-              </li>
+              </li> --}}
               <!-- notification dropdown end -->
           </ul>
           </div>
@@ -220,7 +220,7 @@
                   <!-- user login dropdown start-->
                   <li class="dropdown">
                       <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                          <img alt="{{ Auth::user()->username }}" src="img/avatar1_small.jpg">
+                          {{ HTML::image('img/avatar1_small.jpg', Auth::user()->username); }}
                           <span class="username">{{ Auth::user()->username }}</span>
                           <b class="caret"></b>
                       </a>
@@ -240,4 +240,4 @@
               </ul>
           </div>
       </header>
-      <!--header end-->
+      <!--header end

@@ -6,4 +6,7 @@ class Answer extends \Eloquent {
 
 	protected $fillable = ['body'];
 
+	public function question(){
+		$this->belongsTo('Question');
+	}
 }

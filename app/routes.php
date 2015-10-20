@@ -36,3 +36,12 @@ Route::group(['before' => 'auth'], function(){
 	});
 
 });
+
+Route::group(['before' => 'super_admin'], function(){
+
+	Route::group(['prefix' => 'superadmin/manage'], function(){
+		Route::get('/admins', ['as' => 'manageAdmins', 'uses' => 'SuperAdminController@index']);
+		Route::post('/admins/destroy', ['as' => 'destroyAdmin', 'uses' => 'SuperAdminController@destroyAdmin']);
+	});
+
+});

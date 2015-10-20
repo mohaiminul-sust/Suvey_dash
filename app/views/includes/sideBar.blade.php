@@ -4,11 +4,14 @@ sidebar start-->
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
                   @if (Auth::user()->roles_id == Role::where('type', 'super_admin')->first()->id)
-                    <li>
-                      <a href="#">
-                          <i class="fa fa-dashboard"></i>
-                          <span>Super Admin Controls</span>
+                    <li class="sub-menu">
+                      <a href="javascript:;">
+                          <i class="fa fa-key"></i>
+                          <span>Super Admin</span>
                       </a>
+                      <ul class="sub">
+                          <li><a  href="{{ URL::route('manageAdmins') }}">Manage Admins</a></li>
+                      </ul>
                     </li>
                   @endif
 

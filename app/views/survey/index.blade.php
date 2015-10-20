@@ -6,21 +6,11 @@
 	<!-- page start-->
 	<section class="panel">
 	  <header class="panel-heading">
-	      Surveys
+	      Manage Surveys
 	      <span class="pull-right">
-	          <a href="#" class=" btn btn-success btn-xs"> Create New Surveys</a>
+	          <a href="#" class=" btn btn-success btn-xs"> Create New Survey</a>
 	      </span>
 	  </header>
-	  {{-- search panel --}}
-	  {{-- <div class="panel-body">
-	      <div class="row">
-
-	          <div class="col-md-12">
-	              <div class="input-group"><input type="text" placeholder="Search Here" class="input-sm form-control"> <span class="input-group-btn">
-	              <button type="button" class="btn btn-sm btn-success"> GO!</button> </span></div>
-	          </div>
-	      </div>
-	  </div> --}}
 	  <table class="table table-hover p-table">
 	      <thead>
 	      <tr>

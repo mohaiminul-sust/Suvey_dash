@@ -30,4 +30,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'password' => 'required|alpha_num|between:8,12'
 	];
 
+	public function getAdminCreatedDate(){
+		 return $this->created_at->format('d.m.Y');
+	}
+
+	public function getAdminUpdatedDate(){
+		 return $this->updated_at->format('d.m.Y');
+	}
+
+
+	public function surveys(){
+		return $this->hasMany('Survey', 'admin_users_id');
+	}
+
+	public function getSurveyCount(){
+		return $this->surveys->count();
+	}
 }
