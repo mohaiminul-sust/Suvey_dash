@@ -8,7 +8,7 @@
 	  <header class="panel-heading">
 	      Manage Admins
 	      <span class="pull-right">
-	          <a href="#" class=" btn btn-success btn-xs"> Create New Admin</a>
+	          <a href="{{ URL::route('showCreateAdmin') }}" class=" btn btn-success btn-xs"> Create New Admin</a>
 	      </span>
 	  </header>
 	  
@@ -47,7 +47,7 @@
 	
     {{-- Delete Admin Confirmation Modal --}}
 
-	{{ Form::open(array('route' => ['destroyAdmin'], 'method' => 'post', 'class' => 'form-signin')) }}
+	{{ Form::open(['route' => 'destroyAdmin', 'method' => 'post', 'class' => 'form-signin']) }}
 
         <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade" id="deleteConfModal">
          <div class="modal-dialog">
@@ -73,7 +73,7 @@
 
     {{-- Update Admin modal --}}
     
-    {{ Form::open(array('route' => ['updateAdmin'], 'method' => 'post', 'class' => 'form-horizontal tasi-form')) }}
+    {{ Form::open(['route' => 'updateAdmin', 'method' => 'post', 'class' => 'form-horizontal tasi-form']) }}
 
         <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade" id="updateModal">
          <div class="modal-dialog">

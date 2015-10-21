@@ -15,7 +15,7 @@ class FkSurveysTable extends Migration {
 		Schema::table('surveys', function(Blueprint $table)
 		{
 			$table->integer('admin_users_id')->unsigned();
-			$table->foreign('admin_users_id')->references('id')->on('admin_users')->onDelete('cascade');
+			$table->foreign('admin_users_id')->references('id')->on('admin_users')->onDelete('cascade')->onUpdate('cascade');
 		});
 	}
 

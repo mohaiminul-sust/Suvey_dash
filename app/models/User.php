@@ -47,4 +47,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function getSurveyCount(){
 		return $this->surveys->count();
 	}
+
+	public function role(){
+		return $this->belongsTo('Role', 'roles_id');
+	}
 }

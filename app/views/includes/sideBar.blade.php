@@ -3,6 +3,7 @@ sidebar start-->
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
+              
                   @if (Auth::user()->roles_id == Role::where('type', 'super_admin')->first()->id)
                     <li class="sub-menu">
                       <a href="javascript:;">
@@ -11,6 +12,7 @@ sidebar start-->
                       </a>
                       <ul class="sub">
                           <li><a  href="{{ URL::route('manageAdmins') }}">Manage Admins</a></li>
+                          <li><a  href="{{ URL::route('showCreateAdmin') }}">Create Admin</a></li>
                       </ul>
                     </li>
                   @endif

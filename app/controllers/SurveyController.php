@@ -15,7 +15,9 @@ class SurveyController extends BaseController{
 
 			$user_id  = Auth::user()->id;
 			// return $user_id;
-			return View::make('survey.index')->withSurveys(Survey::where('admin_users_id', $user_id)->get())->with('user_type', $user_type);
+			return View::make('survey.index')
+				->withSurveys(Survey::where('admin_users_id', $user_id)->get())
+				->with('user_type', $user_type);
 
 		}
 

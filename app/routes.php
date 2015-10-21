@@ -43,6 +43,8 @@ Route::group(['before' => 'super_admin'], function(){
 		Route::get('/admins', ['as' => 'manageAdmins', 'uses' => 'SuperAdminController@index']);
 		Route::post('/admins/update', ['as' => 'updateAdmin', 'uses' => 'SuperAdminController@updateAdmin']);
 		Route::post('/admins/destroy', ['as' => 'destroyAdmin', 'uses' => 'SuperAdminController@destroyAdmin']);
+		Route::get('/admins/createform', ['as' => 'showCreateAdmin', 'uses' => 'SuperAdminController@showCreateAdmin']);
+		Route::post('/admins/create', ['as' => 'createAdmin', 'uses' => 'SuperAdminController@createAdmin']);
 	});
 
 });

@@ -15,10 +15,10 @@ class FkTrackSurveysTable extends Migration {
 		Schema::table('track_surveys', function(Blueprint $table)
 		{
 			$table->integer('surveys_id')->unsigned();
-			$table->foreign('surveys_id')->references('id')->on('surveys')->onDelete('cascade');
+			$table->foreign('surveys_id')->references('id')->on('surveys')->onDelete('cascade')->onUpdate('cascade');
 
 			$table->integer('users_id')->unsigned();
-			$table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
+			$table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 
 		});
 	}
