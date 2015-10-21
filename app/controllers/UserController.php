@@ -11,36 +11,23 @@ class UserController extends BaseController{
 
 	public function doLogin(){
 		
-		$validation = Validator::make(Input::all(), User::$rules);
-		
-		if($validation->passes()){
+		$credentials = [
+			'username'	=>	Input::get('username'),
+			'password'	=>	Input::get('password')
+			
+		];
 
-			$credentials = [
-				'username'	=>	Input::get('username'),
-				'password'	=>	Input::get('password')
-				
-			];
+		if (Auth::attempt($credentials))
+		{
 
-			if (Auth::attempt($credentials))
-			{
-
-			    return Redirect::intended('dashboard')->withInfo(Auth::user()->username.' logged in successfully!');
-
-			}
-			else
-			{
-				return Redirect::route('login')
-					->withInput()
-					->withErrors('Wrong Email Address or Password !');
-			}
+		    return Redirect::intended('dashboard')->withInfo(Auth::user()->username.' logged in successfully!');
 
 		}
-		else{
-			
+		else
+		{
 			return Redirect::route('login')
 				->withInput()
-				->withErrors($validation);
-			
+				->withErrors('Wrong Email Address or Password !');
 		}
 	}
 
