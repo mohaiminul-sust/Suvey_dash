@@ -9,13 +9,13 @@ class SurveyController extends BaseController{
 
 		if($user_type == 'super_admin'){
 			
-			return View::make('survey.index')->withSurveys(Survey::all());
+			return View::make('survey.index')->withSurveys(Survey::all())->with('user_type', $user_type);
 
 		}else if($user_type == 'admin'){
 
 			$user_id  = Auth::user()->id;
 			// return $user_id;
-			return View::make('survey.index')->withSurveys(Survey::where('admin_users_id', $user_id)->get());
+			return View::make('survey.index')->withSurveys(Survey::where('admin_users_id', $user_id)->get())->with('user_type', $user_type);
 
 		}
 

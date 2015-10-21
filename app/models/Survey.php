@@ -23,11 +23,16 @@ class Survey extends \Eloquent {
 	}
 
 	public function user(){
-		return $this->belongsTo('User');
+		return $this->belongsTo('User', 'admin_users_id');
 	}
 
 	public function questions(){
 		return $this->hasMany('Question', 'surveys_id');
+	}
+
+	public function getSurveyCreator(){
+		
+		return $this->user->username;
 	}
 
 }
