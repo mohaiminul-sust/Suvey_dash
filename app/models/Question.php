@@ -7,7 +7,7 @@ class Question extends \Eloquent {
 	protected $fillable = ['type', 'body'];
 
 	public function survey(){
-		return $this->belongsTo('Survey');
+		return $this->belongsTo('Survey', 'surveys_id');
 	}
 
 	public function answer(){
