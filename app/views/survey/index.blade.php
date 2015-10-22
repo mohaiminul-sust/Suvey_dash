@@ -2,8 +2,6 @@
 
 @section('content')
 	@include('includes.alert')
-
-	<!-- page start-->
 	<section class="panel">
 	  <header class="panel-heading">
 	      Manage Surveys
