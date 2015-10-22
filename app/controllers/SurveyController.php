@@ -25,7 +25,9 @@ class SurveyController extends BaseController{
 
 	public function show($id){
 
-		//return View::make('survey.show')->withProduct(Product::find($id));
+		$survey = Survey::find($id);
+
+		return View::make('survey.show')->withSurvey($survey);
 	}
 
 	public function rename(){

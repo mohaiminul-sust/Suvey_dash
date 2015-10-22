@@ -25,7 +25,7 @@
 	      @foreach ($surveys as $survey)
 	      	<tr>
 	          <td class="p-name">
-	              <a href="#">{{ $survey->title }}</a>
+	              <a href="{{ URL::route('showSurvey', $survey->id) }}">{{ $survey->title }}</a>
 	              <br>
 	              <small>Created {{ $survey->getSurveyCreatedDate() }} Updated {{ $survey->getSurveyUpdatedDate() }}</small>
 	          </td>
