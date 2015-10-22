@@ -24,12 +24,12 @@ sidebar start-->
                       </a>
                   </li>
 
-                  <li class="sub-menu">
+                  {{-- <li class="sub-menu">
                       <a href="#">
                           <i class="fa fa-users"></i>
                           <span>Guests</span>
                       </a>
-                  </li>
+                  </li> --}}
 
                  {{--  <li class="sub-menu">
                       <a href="javascript:;">

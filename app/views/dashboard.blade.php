@@ -2,5 +2,5 @@
 
 @section('content')
 	@include('includes.alert')
-	<h4>Hi, {{ Auth::user()->email }}!</h4>
+	<h4>Hi, {{ Auth::user()->username }}!</h4>
 @stop
