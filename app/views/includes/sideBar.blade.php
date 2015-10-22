@@ -7,7 +7,7 @@ sidebar start-->
                   @if (Auth::user()->roles_id == Role::where('type', 'super_admin')->first()->id)
                     <li class="sub-menu">
                       <a href="javascript:;">
-                          <i class="fa fa-key"></i>
+                          <i class="fa fa-adn"></i>
                           <span>Super Admin</span>
                       </a>
                       <ul class="sub">

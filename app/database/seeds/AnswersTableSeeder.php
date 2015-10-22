@@ -7,8 +7,6 @@ class AnswersTableSeeder extends Seeder {
         DB::table('answers')->delete();
 
         $faker = Faker\Factory::create();
-        $admin_users_id = User::all()->lists('id');
-        $questions_id = Question::all()->lists('id');
 
         for ($i=0; $i < 5; $i++) { 
             
@@ -16,8 +14,8 @@ class AnswersTableSeeder extends Seeder {
 
                 
                 'body' => $faker->sentence($nbWords= 7),
-                'users_id' => $faker->randomElement($admin_users_id),
-                'questions_id' => $faker->randomElement($questions_id),
+                'users_id' => $faker->randomElement(User::all()->lists('id')),
+                'questions_id' => $faker->randomElement(Question::all()->lists('id')),
                 
             ]);
 

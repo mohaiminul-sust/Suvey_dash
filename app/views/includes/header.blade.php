@@ -22,7 +22,7 @@
     <!-- Custom styles for this template -->
     {{ HTML::style('css/style.css') }}
     {{ HTML::style('css/style-responsive.css') }}
-
+    @yield('style')
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>

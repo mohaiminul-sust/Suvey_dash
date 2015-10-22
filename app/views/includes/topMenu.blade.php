@@ -210,7 +210,7 @@
                   </ul>
               </li> --}}
               <!-- notification dropdown end -->
-          </ul>
+            </ul>
           </div>
           <div class="top-nav ">
               <ul class="nav pull-right top-menu">

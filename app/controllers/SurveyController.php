@@ -30,6 +30,14 @@ class SurveyController extends BaseController{
 		return View::make('survey.show')->withSurvey($survey);
 	}
 
+	public function showCreate(){
+		return View::make('survey.createSurvey');
+	}
+
+	public function create(){
+		return 'write code to create survey!!';
+	}
+
 	public function rename(){
 		$survey = Survey::find(Input::get('surveyId'));
 		$survey->title = Input::get('surveyTitle');

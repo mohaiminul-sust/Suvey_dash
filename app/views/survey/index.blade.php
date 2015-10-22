@@ -6,7 +6,7 @@
 	  <header class="panel-heading">
 	      Manage Surveys
 	      <span class="pull-right">
-	          <a href="#" class=" btn btn-success btn-xs"> Create New Survey</a>
+	          <a href="{{ URL::route('showCreateSurvey') }}" class=" btn btn-success btn-xs"> Create New Survey</a>
 	      </span>
 	  </header>
 	  <table class="table table-hover p-table">
@@ -101,22 +101,4 @@
         </div>
 
     {{ Form::close() }}
-@stop
-
-@section('script')
-	<script type="text/javascript">
-
-		$('#renameModal').on("show.bs.modal", function(e) {
-			var surveyId = $(e.relatedTarget).data('survey-id');
-			var surveyTitle = $(e.relatedTarget).data('survey-title');
-			$(e.currentTarget).find('input[name="surveyId"]').val(surveyId);
-			$(e.currentTarget).find('input[name="surveyTitle"]').val(surveyTitle);
-		});
-
-		$('#deleteConfModal').on("show.bs.modal", function(e) {
-			var surveyId = $(e.relatedTarget).data('survey-id');
-			$(e.currentTarget).find('input[name="surveyId"]').val(surveyId);
-		});
-
-	</script>
 @stop
