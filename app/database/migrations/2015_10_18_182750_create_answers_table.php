@@ -16,6 +16,7 @@ class CreateAnswersTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('body');
+			$table->timestamps();
 		});
 	}
 

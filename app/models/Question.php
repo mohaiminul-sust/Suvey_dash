@@ -14,4 +14,8 @@ class Question extends \Eloquent {
 		return $this->hasOne('Answer', 'questions_id');
 	}
 
+	public function choices(){
+		return $this->hasMany('Choice', 'questions_id');
+	}
+
 }

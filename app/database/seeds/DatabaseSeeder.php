@@ -28,6 +28,17 @@ class DatabaseSeeder extends Seeder {
 		$this->call('TrackSurveysTableSeeder');
 		$this->command->info('Track Surveys Table Seeded !');
 
+		$this->call('QuestionsTableSeeder');
+		$this->command->info('Questions Table Seeded !');
+
+		$this->call('AnswersTableSeeder');
+		$this->command->info('Answers Table Seeded !');
+
+		$this->call('ChoicesTableSeeder');
+		$this->command->info('Choices Table Seeded !');
+
+
+		$this->command->info('\nSEEDING DONE !');
 
 	}
 

@@ -16,6 +16,7 @@ class CreateChoicesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('choice');
+			$table->timestamps();
 		});
 	}
 
