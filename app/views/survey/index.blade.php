@@ -16,6 +16,7 @@
 	          @if ($user_type != 'admin')
 	          	<th>Created By</th>
 	          @endif
+	          <th>Question Count</th>
 	          <th>Customize</th>
 	      </tr>
 	      </thead>
@@ -32,6 +33,9 @@
 		          {{ $survey->user->username }}
 		        </td>
 	          @endif
+	          <td>
+	          	{{ $survey->questions->count() }}
+	          </td>
 	          <td>
 	              {{-- <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a> --}}
 	              <a data-toggle="modal" href="#renameModal" data-survey-id= "{{ $survey->id }}" data-survey-title="{{ $survey->title }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Rename </a>
