@@ -9,14 +9,16 @@ a:hover {
 
 /*panel*/
 .panel {
-    border: none;
+    /*border: none;*/
     box-shadow: none;
+    border-color: #D3DBD9;
 }
 
 .panel-heading {
-    border-color:#eff2f7 ;
+    border-color:#A7C4BD ;
     font-size: 24px;
     font-weight: 300;
+
 }
 
 .panel-title {

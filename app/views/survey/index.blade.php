@@ -6,7 +6,7 @@
 	  <header class="panel-heading">
 	      Manage Surveys
 	      <span class="pull-right">
-	          <a href="{{ URL::route('showCreateSurvey') }}" class=" btn btn-success btn-xs"> Create New Survey</a>
+	          <a data-toggle="modal" href="#createModal" class=" btn btn-success btn-xs"> Create New Survey</a>
 	      </span>
 	  </header>
 	  <table class="table table-hover p-table">
@@ -68,6 +68,31 @@
                  <div class="modal-footer">
                      <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
                      {{ Form::submit('Rename', array('class' => 'btn btn-success')) }}
+                    <!--  <button class="btn btn-success" type="button">Submit</button> -->
+                 </div>
+             </div>
+         </div>
+        </div>
+
+    {{ Form::close() }}
+
+    {{-- create new survey modal --}}
+    {{ Form::open(array('route' => ['createSurvey'], 'method' => 'post', 'class' => 'form-signin')) }}
+
+        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade" id="createModal">
+         <div class="modal-dialog">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                     <h4 class="modal-title">Create New Survey</h4>
+                 </div>
+                 <div class="modal-body">
+                     <p>Enter title for the new survey below</p>
+                     <input type="text" name="surveyTitle" value="" autocomplete="off" class="form-control placeholder-no-fix">
+                 </div>
+                 <div class="modal-footer">
+                     <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                     {{ Form::submit('Create', array('class' => 'btn btn-success')) }}
                     <!--  <button class="btn btn-success" type="button">Submit</button> -->
                  </div>
              </div>

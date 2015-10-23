@@ -2,8 +2,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keyword" content="sust,admission,Shahjalal University,Science,Technology,edu">
+    <meta name="author" content="messiveLab">
+    <meta name="keyword" content="survey,admin,super admin,super,admin,panel,admin panel">
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>Dashboard - {{ Config::get('customConfig.siteName') }}</title>

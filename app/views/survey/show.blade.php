@@ -40,6 +40,7 @@
 		<section class="panel">
 			<header class="panel-heading">
 				Questions
+				{{-- <a data-toggle="modal" href="#createQuestionModal" class=" btn btn-success btn-xs pull-right">Add questions</a> --}}
 			</header>
 			<div class="panel-body">
 				<div class="panel-group" id="accordion1">
@@ -77,7 +78,139 @@
 		</section>
 
 	</div>
+
+	<div class="col-md-4">
+      <section class="panel">
+          <header class="panel-heading">
+              Add Question
+          </header>
+
+          <div class="panel-body">
+			  {{ Form::open(['route' => ['renameSurvey'], 'method' => 'post', 'class' => '']) }}
+
+              <div class="form">
+
+			 	 <div class="form-group">
+					{{ Form::label('Question Body', '',['class'=>'control-label']) }}
+					<div class= "">
+						{{ Form::text('questionBody', '', ['class'=>'form-control', 'placeholder'=>'Enter question body']) }}
+					</div>
+				 </div>
+
+				 <div class="form-group">
+					{{ Form::label('Question Type', '', ['class'=>'control-label']) }}
+					<div class="">
+						<div class="radio-list">
+							<div class="radio">
+								{{ Form::radio('questionTypeRadio', 'mcq', 'true') }}
+								{{ Form::label('MCQ') }}
+							</div>
+							<div class="radio">
+								{{ Form::radio('questionTypeRadio', 'written', '') }}
+								{{ Form::label('Written') }}
+							</div>
+						</div>
+					</div>
+				 </div>
+				 
+				 <div class="form-group">
+				 	{{ Form::label('Choices', '', ['class'=>'control-label']) }}
+				 	<div>
+				 		{{ Form::text('choice', '', ['class'=>'form-control', 'placeholder'=>'Enter a choice']) }}
+				 	</div>
+				 </div>
+
+			 </div>
+
+	         <input type="hidden" name="questionTypeHidden" value="">
+             {{-- {{ Form::submit('ADD', array('class' => 'btn btn-success')) }} --}}
+	     {{ Form::close() }}
+          </div> {{-- panel end --}}
+
+      </section>
+  </div>
 	
 </div>
 <!-- page end-->
+
+{{-- Modals --}}
+
+{{-- create question modal --}}
+
+{{ Form::open(array('route' => ['renameSurvey'], 'method' => 'post', 'class' => 'form-signin')) }}
+
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade" id="createQuestionModal">
+     <div class="modal-dialog">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title">Create Question</h4>
+             </div>
+             <div class="modal-body">
+	                 
+				 <div class="form">
+
+				 	 <div class="form-group">
+						{{ Form::label('Question Body', '',['class'=>'col-lg-4 control-label']) }}
+						<div class= "col-lg-8">
+							{{ Form::text('questionBody', '', ['class'=>'form-control', 'placeholder'=>'Enter question body']) }}
+						</div>
+					 </div>
+
+					 <div class="form-group">
+						{{ Form::label('Question Type', '', ['class'=>'col-lg-4 control-label']) }}
+						<div class="col-lg-8">
+							<div class="radio-list">
+								<div class="radio">
+									{{ Form::radio('questionTypeRadio', 'mcq', 'true') }}
+									{{ Form::label('MCQ') }}
+								</div>
+								<div class="radio">
+									{{ Form::radio('questionTypeRadio', 'written', '') }}
+									{{ Form::label('Written') }}
+								</div>
+							</div>
+						</div>
+					 </div>
+				
+					 <div class="form-group">
+						<div>
+							{{ Form::label('Choices', '', ['class'=>'col-lg-4 control-label']) }}
+							<a href="#" class="btn"> Add choices</a>
+						</div>
+						{{-- <div class="col-lg-8">
+							{{ Form::password('password', ['class'=>'form-control']) }}
+						</div> --}}
+					 </div>
+				
+				
+				 </div>
+
+                 <input type="hidden" name="questionTypeHidden" value="">
+             
+             </div>
+             <div class="modal-footer">
+                 <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                 {{ Form::submit('Rename', array('class' => 'btn btn-success')) }}
+                <!--  <button class="btn btn-success" type="button">Submit</button> -->
+             </div>
+         </div>
+     </div>
+    </div>
+
+{{ Form::close() }}
+
+
+@stop
+
+@section('script')
+
+	<script type="text/javascript">
+	
+		$('#radio-list input').on('change', function() {
+		   var quesType = ($('input[name="questionTypeRadio"]:checked', '#radio-list').val()); 
+		});
+	
+	</script>
+
 @stop
