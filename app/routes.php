@@ -30,11 +30,17 @@ Route::group(['before' => 'auth'], function(){
 
 	Route::group(['prefix' => 'surveys'], function(){
 		Route::get('/', ['as' => 'surveys', 'uses' => 'SurveyController@index']);
-		Route::get('/createform', ['as' => 'showCreateSurvey', 'uses' => 'SurveyController@showCreate']);
 		Route::post('/create', ['as' => 'createSurvey', 'uses' => 'SurveyController@create']);
 		Route::post('/rename', ['as' => 'renameSurvey', 'uses' => 'SurveyController@rename']);
 		Route::post('/destroy', ['as' => 'destroySurvey', 'uses' => 'SurveyController@destroy']);
 		Route::get('/show/{id}', ['as' => 'showSurvey', 'uses' => 'SurveyController@show']);
+	});
+
+	Route::group(['prefix' => 'questions'], function(){
+		Route::post('/create', ['as' => 'createQuestion', 'uses' => 'QuestionController@create']);
+		// Route::post('/rename', ['as' => 'renameSurvey', 'uses' => 'SurveyController@rename']);
+		// Route::post('/destroy', ['as' => 'destroySurvey', 'uses' => 'SurveyController@destroy']);
+		// Route::get('/show/{id}', ['as' => 'showSurvey', 'uses' => 'SurveyController@show']);
 	});
 
 });

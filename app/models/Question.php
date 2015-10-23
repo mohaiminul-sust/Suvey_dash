@@ -6,6 +6,11 @@ class Question extends \Eloquent {
 
 	protected $fillable = ['type', 'body'];
 
+	public static $rules = [
+		// 'type' => 'required',
+		// 'body' => 'required'
+	];
+
 	public function survey(){
 		return $this->belongsTo('Survey', 'surveys_id');
 	}

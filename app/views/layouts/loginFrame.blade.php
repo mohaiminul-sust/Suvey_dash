@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <meta name="keyword" content="">
-        <link rel="shortcut icon" href="img/favicon.png">
+        <link rel="shortcut icon" href="{{ asset('img/dashboard.png') }}">
 
         <title>{{ $title }} - {{ Config::get('customConfig.siteName') }}</title>
 
