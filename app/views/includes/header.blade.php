@@ -4,8 +4,8 @@
     <meta name="description" content="">
     <meta name="author" content="messiveLab">
     <meta name="keyword" content="survey,admin,super admin,super,admin,panel,admin panel">
-    <link rel="shortcut icon" href="img/favicon.png">
-
+    <link rel="shortcut icon" href="{{ asset('img/dashboard.png') }}">
+    
     <title>Dashboard - {{ Config::get('customConfig.siteName') }}</title>
     
     
