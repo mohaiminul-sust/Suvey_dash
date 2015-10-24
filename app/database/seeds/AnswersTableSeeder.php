@@ -8,15 +8,15 @@ class AnswersTableSeeder extends Seeder {
 
         $faker = Faker\Factory::create();
 
+        $questions = Question::all()->lists('id');
+        $users = User::all()->lists('id');
+
         for ($i=0; $i < 5; $i++) { 
             
             Answer::create([
-
-                
                 'body' => $faker->sentence($nbWords= 7),
-                'users_id' => $faker->randomElement(User::all()->lists('id')),
-                'questions_id' => $faker->randomElement(Question::all()->lists('id')),
-                
+                'questions_id' => $faker->randomElement($questions),
+                'users_id' => $faker->randomElement($users)
             ]);
 
         }

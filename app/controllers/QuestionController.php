@@ -6,11 +6,12 @@ class QuestionController extends BaseController{
 	public function create(){
 
 		// dd(Input::all());
-		if (Input::get('questionBody') == '') {
+		if (Input::get('questionBody') == '' || strlen(Input::get('questionBody')) == 0) {
 	
-			return Redirect::back()->withError('Input question correctly !');
+			return Redirect::back()->withError('Input question correctly !')->withInput();
 			
 		}
+
 		$validator = Validator::make(Input::all(), Question::$addQuestionRules);
 
 		if($validator->passes()){
@@ -30,13 +31,19 @@ class QuestionController extends BaseController{
 			}else if($questionType == 'mcq'){
 
 
-				$choices = Input::get('choices');
+				$choice = Input::get('choices');
+
+				if(gettype($choice) == 'string'){
+
+					$choices[0] = $choice;
+				}
 
 				if(in_array('', $choices)){
 					
-					return Redirect::back()->withError('Input options correctly for MCQ !');
+					return Redirect::back()->withError('Input options correctly for MCQ !')->withInput();
 
 				}else{
+
 					$question = new Question;
 					$question->type = $questionType;
 					$question->body = Input::get('questionBody');
@@ -45,12 +52,16 @@ class QuestionController extends BaseController{
 
 					// $i='0';
 					if($choices){
+
 						foreach ($choices as $child) {
+
 							$choice = new Choice;
 							$choice->choice = $child;
 							$choice->questions_id = $question->id;
 							$choice->save();
+
 						}
+
 					}
 
 					// $question->save();
@@ -61,7 +72,7 @@ class QuestionController extends BaseController{
 
 			}else{
 				
-				return Redirect::back()->withError('Question Can\'t be created !');
+				return Redirect::back()->withError('Question Can\'t be created !')->withInput();
 
 			}
 

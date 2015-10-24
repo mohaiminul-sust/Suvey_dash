@@ -123,14 +123,12 @@
 				 	<div class="form-group">				 	
 						<div class="multi-fields form-inline">
 							<div class="multi-field input-append">
-						 		{{ Form::text('choices[]', '', ['class'=>'form-control sr-input', 'placeholder'=>'Enter a choice']) }}
+						 		{{ Form::text('choices', '', ['class'=>'form-control', 'placeholder'=>'Enter a choice']) }}
 								{{ Form::button('-', ['class'=>'remove-field btn btn-danger']) }}
 							</div>
 						</div>
 				 	</div>
 				 </div>
-
-			 
 
 	         <input type="hidden" name="surveyIdH" value="{{ $survey->id }}">
 
