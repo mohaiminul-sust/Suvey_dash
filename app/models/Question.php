@@ -6,9 +6,8 @@ class Question extends \Eloquent {
 
 	protected $fillable = ['type', 'body'];
 
-	public static $rules = [
-		// 'type' => 'required',
-		// 'body' => 'required'
+	public static $addQuestionRules = [
+		'questionBody' => 'required'
 	];
 
 	public function survey(){

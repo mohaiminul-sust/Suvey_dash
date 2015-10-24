@@ -15,7 +15,7 @@ class FkChoicesTable extends Migration {
 		Schema::table('choices', function(Blueprint $table)
 		{
 			$table->integer('questions_id')->unsigned();
-			$table->foreign('questions_id')->references('id')->on('questions')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('questions_id')->references('id')->on('questions')->onUpdate('cascade')->onDelete('cascade');
 		});
 	}
 

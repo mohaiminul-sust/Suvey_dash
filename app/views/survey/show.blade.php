@@ -91,14 +91,14 @@
 
 			 	 <div class="form-group">
 					{{ Form::label('Question Body', '',['class'=>'control-label']) }}
-					<div class= "">
+					<div>
 						{{ Form::text('questionBody', '', ['class'=>'form-control', 'placeholder'=>'Enter question body']) }}
 					</div>
 				 </div>
 
 				 <div class="form-group">
 					{{ Form::label('Question Type', '', ['class'=>'control-label']) }}
-					<div class="">
+					<div>
 						<div class="radio-list">
 							<div class="radio">
 								{{ Form::radio('questionTypeRadio', 'mcq', 'true') }}

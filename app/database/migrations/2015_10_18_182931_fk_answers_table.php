@@ -15,10 +15,10 @@ class FkAnswersTable extends Migration {
 		Schema::table('answers', function(Blueprint $table)
 		{
 			$table->integer('users_id')->unsigned();
-			$table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('users_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
 
 			$table->integer('questions_id')->unsigned();
-			$table->foreign('questions_id')->references('id')->on('questions')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('questions_id')->references('id')->on('questions')->onUpdate('cascade')->onDelete('cascade');
 		});
 	}
 

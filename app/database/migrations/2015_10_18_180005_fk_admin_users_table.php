@@ -15,7 +15,7 @@ class FkAdminUsersTable extends Migration {
 		Schema::table('admin_users', function(Blueprint $table)
 		{
 			$table->integer('roles_id')->unsigned();
-			$table->foreign('roles_id')->references('id')->on('roles');
+			$table->foreign('roles_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
 		});
 	}
 
