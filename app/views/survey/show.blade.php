@@ -53,6 +53,9 @@
 								<a href="#accordion1_{{ $iter }}" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
 									{{ $iter }}. {{ $question->body }}
 								</a>
+								<a data-toggle="modal" href="#deleteQuesConfModal" data-question-id="{{ $question->id }}" class="btn sr-btn btn-xs pull-right">
+									<i class="fa fa-trash-o"></i> 
+								</a>
 							</h4>
 						</div>
 						<div class="{{ Utils::getAccordianClass($question->type) }}" id="{{ Utils::getAccordianId($question->type, $iter) }}">
@@ -121,7 +124,7 @@
 						<div class="multi-fields form-inline">
 							<div class="multi-field input-append">
 						 		{{ Form::text('choices[]', '', ['class'=>'form-control sr-input', 'placeholder'=>'Enter a choice']) }}
-								{{ Form::button('-', ['class'=>'remove-field btn sr-btn']) }}
+								{{ Form::button('-', ['class'=>'remove-field btn btn-danger']) }}
 							</div>
 						</div>
 				 	</div>
@@ -129,7 +132,6 @@
 
 			 
 
-	         <input type="hidden" name="questionTypeH" value="">
 	         <input type="hidden" name="surveyIdH" value="{{ $survey->id }}">
 
              {{ Form::submit('Add Question', array('class' => 'btn btn-success pull-right')) }}
@@ -141,7 +143,32 @@
 	
 </div>
 <!-- page end-->
+{{-- Modals --}}
+{{-- delete confirmation modal --}}
+{{ Form::open(['route' => ['destroyQuestion'], 'method' => 'post', 'class' => 'form-signin']) }}
 
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade" id="deleteQuesConfModal">
+     <div class="modal-dialog">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title">Delete Question</h4>
+             </div>
+             <div class="modal-body">
+                 <p>Are you sure you want to delete the question ?</p>
+                 {{-- <input type="text" name="surveyTitle" value="" autocomplete="off" class="form-control placeholder-no-fix"> --}}
+                 <input type="hidden" name="questionId" value="">
+             </div>
+             <div class="modal-footer">
+                 <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                 {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
+                <!--  <button class="btn btn-success" type="button">Submit</button> -->
+             </div>
+         </div>
+     </div>
+    </div>
+
+{{ Form::close() }}
 
 @stop
 
@@ -151,7 +178,7 @@
 	
 		$('#radio-list input').on('change', function() {
 		   var quesType = ($('input[name="questionTypeRadio"]:checked', '#radio-list').val()); 
-		   $('.panel-body').find('input[name="questionTypeH"]').val(quesType);
+		   // $('.panel-body').find('input[name="questionTypeH"]').val(quesType);
 		});
 	
 	</script>
@@ -167,6 +194,16 @@
 		            $(this).parent('.multi-field').remove();
 		    });
 		});
+	</script>
+
+	<script type="text/javascript">
+		$('#deleteQuesConfModal').on("show.bs.modal", function(e) {
+    
+           var questionId = $(e.relatedTarget).data('question-id');
+    
+           $(e.currentTarget).find('input[name="questionId"]').val(questionId);
+
+        });
 	</script>
 
 @stop

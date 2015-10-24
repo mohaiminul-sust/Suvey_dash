@@ -74,4 +74,19 @@ class QuestionController extends BaseController{
 
 	}
 
+
+	public function destroy(){
+		// dd(Input::all());
+		$question = Question::find(Input::get('questionId'));
+
+		if($question){
+			$question->delete();
+
+			return Redirect::back()->withSuccess('Question Deleted !');
+		}
+
+		return Redirect::back()->withError('Question Deletetion failed !');
+
+	}
+
 }

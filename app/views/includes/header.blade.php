@@ -7,6 +7,9 @@
     <link rel="shortcut icon" href="img/favicon.png">
 
     <title>Dashboard - {{ Config::get('customConfig.siteName') }}</title>
+    
+    
+    {{-- {{ HTML::script('js/jquery.js') }} --}}
 
     <!-- Bootstrap core CSS -->
 

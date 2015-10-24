@@ -39,7 +39,7 @@ Route::group(['before' => 'auth'], function(){
 	Route::group(['prefix' => 'questions'], function(){
 		Route::post('/create', ['as' => 'createQuestion', 'uses' => 'QuestionController@create']);
 		// Route::post('/rename', ['as' => 'renameSurvey', 'uses' => 'SurveyController@rename']);
-		// Route::post('/destroy', ['as' => 'destroySurvey', 'uses' => 'SurveyController@destroy']);
+		Route::post('/destroy', ['as' => 'destroyQuestion', 'uses' => 'QuestionController@destroy']);
 		// Route::get('/show/{id}', ['as' => 'showSurvey', 'uses' => 'SurveyController@show']);
 	});
 
