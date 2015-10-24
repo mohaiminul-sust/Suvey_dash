@@ -6,8 +6,15 @@
 <section class="panel">
 	<header class="panel-heading">
 		Survey Details
+		<div class="pull-right">
+			<a data-toggle="modal" href="#renameModal" data-survey-id= "{{ $survey->id }}" data-survey-title="{{ $survey->title }}" class="btn btn-info btn-xs">
+			    <i class="fa fa-pencil"></i> Rename 
+			</a>
+		    <a data-toggle="modal" href="#deleteConfModal" data-survey-id="{{ $survey->id }}" class="btn btn-danger btn-xs">
+		        <i class="fa fa-trash-o"></i> Delete 
+		    </a>
+		</div>
 	</header>
-
 </section>
 <div class="row">
 	<div class="col-md-8">
@@ -53,22 +60,27 @@
 								<a href="#accordion1_{{ $iter }}" data-parent="#accordion1" data-toggle="collapse" class="accordion-toggle">
 									{{ $iter }}. {{ $question->body }}
 								</a>
-								<a data-toggle="modal" href="#deleteQuesConfModal" data-question-id="{{ $question->id }}" class="btn sr-btn btn-xs pull-right">
-									<i class="fa fa-trash-o"></i> 
-								</a>
+								<div class="pull-right">
+									<a data-toggle="modal" href="{{ URL::route('showUpdateQuestion', $question->id) }}" class="btn sr-btn btn-xs">
+					                    <i class="fa fa-pencil"></i> 
+					                </a>
+									<a data-toggle="modal" href="#deleteQuesConfModal" data-question-id="{{ $question->id }}" class="btn sr-btn btn-xs">
+										<i class="fa fa-trash-o"></i> 
+									</a>
+								</div>
 							</h4>
 						</div>
 						<div class="{{ Utils::getAccordianClass($question->type) }}" id="{{ Utils::getAccordianId($question->type, $iter) }}">
 							@if($question->type == 'mcq')
-							<div class="col-lg-offset-1">
-								<?php $i=1; ?>
-								@foreach ($question->choices as $choice)
-								<label>
-									{{ $i }}. {{ $choice->choice }}
-								</label><br>
-								<?php $i++; ?>
-								@endforeach
-							</div>
+								<div class="col-lg-offset-1">
+									<?php $i=1; ?>
+									@foreach ($question->choices as $choice)
+									<label>
+										{{ $i }}. {{ $choice->choice }}
+									</label><br>
+									<?php $i++; ?>
+									@endforeach
+								</div>
 							@elseif($question->type == 'written')
 
 							@endif
@@ -90,7 +102,8 @@
           </header>
 
           <div class="panel-body">
-			  {{ Form::open(['route' => ['createQuestion'], 'method' => 'post', 'class' => 'form']) }}
+
+			  	{{ Form::open(['route' => ['createQuestion'], 'method' => 'post', 'class' => 'form']) }}
 
 			 	 <div class="form-group">
 					{{ Form::label('Question Body', '',['class'=>'control-label']) }}
@@ -133,7 +146,7 @@
 	         <input type="hidden" name="surveyIdH" value="{{ $survey->id }}">
 
              {{ Form::submit('Add Question', array('class' => 'btn btn-success pull-right')) }}
-	     {{ Form::close() }}
+	     	{{ Form::close() }}
           </div> {{-- panel end --}}
 
       </section>
@@ -142,7 +155,7 @@
 </div>
 <!-- page end-->
 {{-- Modals --}}
-{{-- delete confirmation modal --}}
+{{--Question delete confirmation modal --}}
 {{ Form::open(['route' => ['destroyQuestion'], 'method' => 'post', 'class' => 'form-signin']) }}
 
     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade" id="deleteQuesConfModal">
@@ -168,6 +181,56 @@
 
 {{ Form::close() }}
 
+{{-- Survey delete confirmation modal --}}
+{{ Form::open(array('route' => ['destroySurvey'], 'method' => 'post', 'class' => 'form-signin')) }}
+
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade" id="deleteConfModal">
+     <div class="modal-dialog">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title">Delete Survey</h4>
+             </div>
+             <div class="modal-body">
+                 <p>Are you sure you want to delete the survey?</p>
+                 {{-- <input type="text" name="surveyTitle" value="" autocomplete="off" class="form-control placeholder-no-fix"> --}}
+                 <input type="hidden" name="surveyId" value="">
+             </div>
+             <div class="modal-footer">
+                 <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                 {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
+                <!--  <button class="btn btn-success" type="button">Submit</button> -->
+             </div>
+         </div>
+     </div>
+    </div>
+
+{{ Form::close() }}
+{{-- Question rename modal --}}
+{{ Form::open(array('route' => ['renameSurvey'], 'method' => 'post', 'class' => 'form-signin')) }}
+
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade" id="renameModal">
+     <div class="modal-dialog">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                 <h4 class="modal-title">Rename Survey</h4>
+             </div>
+             <div class="modal-body">
+                 <p>Enter new title for the survey below</p>
+                 <input type="text" name="surveyTitle" value="" autocomplete="off" class="form-control placeholder-no-fix">
+                 <input type="hidden" name="surveyId" value="">
+             </div>
+             <div class="modal-footer">
+                 <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                 {{ Form::submit('Rename', array('class' => 'btn btn-success')) }}
+                <!--  <button class="btn btn-success" type="button">Submit</button> -->
+             </div>
+         </div>
+     </div>
+    </div>
+
+{{ Form::close() }}
 @stop
 
 @section('script')
@@ -183,14 +246,23 @@
 
 	<script type="text/javascript">
 		$('.multi-field-wrapper').each(function() {
+		    
 		    var $wrapper = $('.multi-fields', this);
+		    
 		    $(".add-field", $(this)).click(function(e) {
+		    
 		        $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('').focus();
+		    
 		    });
+		    
 		    $('.multi-field .remove-field', $wrapper).click(function() {
+		    
 		        if ($('.multi-field', $wrapper).length > 1)
+		    
 		            $(this).parent('.multi-field').remove();
+		    
 		    });
+		
 		});
 	</script>
 
@@ -203,5 +275,29 @@
 
         });
 	</script>
+
+	<script type="text/javascript">
+
+        $('#renameModal').on("show.bs.modal", function(e) {
+            var surveyId = $(e.relatedTarget).data('survey-id');
+
+            var surveyTitle = $(e.relatedTarget).data('survey-title');
+
+            $(e.currentTarget).find('input[name="surveyId"]').val(surveyId);
+
+            $(e.currentTarget).find('input[name="surveyTitle"]').val(surveyTitle);
+
+        });
+
+  
+    
+        $('#deleteConfModal').on("show.bs.modal", function(e) {
+    
+           var surveyId = $(e.relatedTarget).data('survey-id');
+    
+           $(e.currentTarget).find('input[name="surveyId"]').val(surveyId);
+
+        });
+    </script>
 
 @stop

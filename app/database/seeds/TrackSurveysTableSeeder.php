@@ -4,7 +4,7 @@ class TrackSurveysTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('track_surveys')->delete();
+        // DB::table('track_surveys')->delete();
 
         $faker = Faker\Factory::create();
 

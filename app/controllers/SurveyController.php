@@ -49,10 +49,10 @@ class SurveyController extends BaseController{
 
 		if($survey){
 			$survey->delete();
-			return Redirect::back()->withSuccess('Survey entry deleted!');
+			return Redirect::route('surveys')->withSuccess('Survey entry deleted!');
 		}
 
-		return Redirect::back()->withError('Survey can\'t be deleted!!');
+		return Redirect::route('surveys')->withError('Survey can\'t be deleted!!');
 	}
 
 }

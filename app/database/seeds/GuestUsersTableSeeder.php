@@ -4,7 +4,7 @@ class GuestUsersTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('users')->delete();
+        // DB::table('users')->delete();
 
         $faker = Faker\Factory::create();
 

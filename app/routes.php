@@ -13,7 +13,6 @@
 
 Route::get('/', ['as'=>'index','uses' => 'PublicController@home']);
 
-// Route::controller('password', 'RemindersController');
 
 Route::group(['before' => 'guest'], function (){
 	Route::get('login', ['as'=>'login','uses' => 'UserController@showLogin']);
@@ -38,7 +37,8 @@ Route::group(['before' => 'auth'], function(){
 
 	Route::group(['prefix' => 'questions'], function(){
 		Route::post('/create', ['as' => 'createQuestion', 'uses' => 'QuestionController@create']);
-		// Route::post('/rename', ['as' => 'renameSurvey', 'uses' => 'SurveyController@rename']);
+		Route::get('/update/{id}', ['as'=>'showUpdateQuestion', 'uses' => 'QuestionController@showUpdate']);
+		Route::post('/update/{id}', ['as' => 'doUpdateQuestion', 'uses' => 'QuestionController@update']);
 		Route::post('/destroy', ['as' => 'destroyQuestion', 'uses' => 'QuestionController@destroy']);
 		// Route::get('/show/{id}', ['as' => 'showSurvey', 'uses' => 'SurveyController@show']);
 	});

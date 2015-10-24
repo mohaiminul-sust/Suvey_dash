@@ -4,7 +4,7 @@ class RolesTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('roles')->delete();
+        // DB::table('roles')->delete();
 
         // DB::statement('ALTER TABLE roles AUTO_INCREMENT = '.(count(Role::all())+1).';');
 

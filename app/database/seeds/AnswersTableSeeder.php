@@ -4,7 +4,7 @@ class AnswersTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('answers')->delete();
+        // DB::table('answers')->delete();
 
         $faker = Faker\Factory::create();
 

@@ -4,7 +4,7 @@ class AdminUsersTableSeeder extends Seeder {
 
     public function run()
     {
-        DB::table('admin_users')->delete();
+        // DB::table('admin_users')->delete();
 
         $faker = Faker\Factory::create();
 

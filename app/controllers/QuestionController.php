@@ -50,7 +50,6 @@ class QuestionController extends BaseController{
 					$question->surveys_id = Input::get('surveyIdH');
 					$question->save();
 
-					// $i='0';
 					if($choices){
 
 						foreach ($choices as $child) {
@@ -63,8 +62,6 @@ class QuestionController extends BaseController{
 						}
 
 					}
-
-					// $question->save();
 
 					return Redirect::back()->withSuccess('Question added successfully !');
 				}
@@ -83,6 +80,16 @@ class QuestionController extends BaseController{
 		   ->withErrors($validator)
 		   ->withInput();
 
+	}
+
+	public function showUpdate($id){
+
+		return Redirect::back()->withError('Do show update code !');
+	}	
+
+	public function update(){
+
+		return Redirect::back()->withError('Do update code !');
 	}
 
 
