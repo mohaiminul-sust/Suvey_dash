@@ -37,9 +37,15 @@
 	          	{{ $survey->questions->count() }}
 	          </td>
 	          <td>
-	              {{-- <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a> --}}
-	              <a data-toggle="modal" href="#renameModal" data-survey-id= "{{ $survey->id }}" data-survey-title="{{ $survey->title }}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Rename </a>
-	              <a data-toggle="modal" href="#deleteConfModal" data-survey-id="{{ $survey->id }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+	              <a href="{{ URL::route('showSurvey', $survey->id) }}" class="btn btn-primary btn-xs">
+                    <i class="fa fa-folder"></i> View 
+                  </a>
+	              <a data-toggle="modal" href="#renameModal" data-survey-id= "{{ $survey->id }}" data-survey-title="{{ $survey->title }}" class="btn btn-info btn-xs">
+                    <i class="fa fa-pencil"></i> Rename 
+                  </a>
+	              <a data-toggle="modal" href="#deleteConfModal" data-survey-id="{{ $survey->id }}" class="btn btn-danger btn-xs">
+                    <i class="fa fa-trash-o"></i> Delete 
+                  </a>
 	          </td>
 	        </tr>
 	      @endforeach
