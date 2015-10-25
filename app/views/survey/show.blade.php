@@ -240,12 +240,27 @@
 @section('script')
 
 	<script type="text/javascript">
-	
-		$('#radio-list input').on('change', function() {
-		   var quesType = ($('input[name="questionTypeRadio"]:checked', '#radio-list').val()); 
-		   // $('.panel-body').find('input[name="questionTypeH"]').val(quesType);
+
+		$(document).ready(function(){
+
+			$('.radio-list').on('change', function() {
+		   
+			   var quesType = ($('input[name="questionTypeRadio"]:checked', '.radio-list').val());
+			   // alert(quesType);
+			   if(quesType == "mcq"){
+			   		$('.multi-field-wrapper').fadeIn("slow", function(){
+			   			$(this).show();
+			   		});	
+			   }
+			   if(quesType == "written"){
+			   		$('.multi-field-wrapper').fadeOut("normal", function(){
+			   			$(this).hide();
+			   		});	
+			   }
+			});
+
 		});
-	
+
 	</script>
 
 	<script type="text/javascript">
@@ -258,7 +273,7 @@
 		    	var $field =$('input[name^="choice"]:last');
 		    	var num = parseInt( $field.prop("name").match(/\d+/g), 10 ) +1;
 
-		    	$('.multi-field:first-child', $wrapper).fadeIn("normal", function(){
+		    	$('.multi-field:first-child', $wrapper).fadeIn("slow", function(){
 
 		    		$(this).clone(true).appendTo($wrapper).find('input').val('').prop('name', 'choice'+num).focus();
 		    	
@@ -313,5 +328,5 @@
 
         });
     </script>
-
+	
 @stop
