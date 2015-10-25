@@ -257,7 +257,12 @@
 		    	
 		    	var $field =$('input[name^="choice"]:last');
 		    	var num = parseInt( $field.prop("name").match(/\d+/g), 10 ) +1;
-		    	$('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('').prop('name', 'choice'+num).focus();
+
+		    	$('.multi-field:first-child', $wrapper).fadeIn("normal", function(){
+
+		    		$(this).clone(true).appendTo($wrapper).find('input').val('').prop('name', 'choice'+num).focus();
+		    	
+		    	});
 
 		        document.getElementById('count').value = num;
 		    });
@@ -266,7 +271,9 @@
 		    
 		        if ($('.multi-field', $wrapper).length > 1)
 		    
-		            $(this).parent('.multi-field').remove();
+		            $(this).parent('.multi-field').fadeOut("normal", function(){
+		            	$(this).remove();
+		            });
 		    
 		    });
 		

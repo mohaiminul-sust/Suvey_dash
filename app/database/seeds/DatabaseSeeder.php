@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder {
 			'roles'
 		];
 		
-		$this->command->info('Truncating Tables ...');
+		$this->command->info('...... Truncating Tables ......');
 
 		DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
