@@ -7,6 +7,9 @@
 	<header class="panel-heading">
 		Survey Details
 		<div class="pull-right">
+			<a data-toggle="modal" href="#createModal" class="btn btn-success btn-xs">
+		        <i class="fa fa-plus-square"></i> Create 
+		    </a>
 			<a data-toggle="modal" href="#renameModal" data-survey-id= "{{ $survey->id }}" data-survey-title="{{ $survey->title }}" class="btn btn-info btn-xs">
 			    <i class="fa fa-pencil"></i> Rename 
 			</a>
@@ -136,7 +139,7 @@
 				 	<div class="form-group">				 	
 						<div class="multi-fields form-inline">
 							<div class="multi-field input-append">
-						 		{{ Form::text('choices', '', ['class'=>'form-control', 'placeholder'=>'Enter a choice']) }}
+						 		{{ Form::text('choice0', '', ['class'=>'form-control', 'placeholder'=>'Enter a choice']) }}
 								{{ Form::button('-', ['class'=>'remove-field btn btn-danger']) }}
 							</div>
 						</div>
@@ -144,7 +147,8 @@
 				 </div>
 
 	         <input type="hidden" name="surveyIdH" value="{{ $survey->id }}">
-
+			 <input type="hidden" id="count" value="0" name="count">
+			
              {{ Form::submit('Add Question', array('class' => 'btn btn-success pull-right')) }}
 	     	{{ Form::close() }}
           </div> {{-- panel end --}}
@@ -248,11 +252,14 @@
 		$('.multi-field-wrapper').each(function() {
 		    
 		    var $wrapper = $('.multi-fields', this);
-		    
+
 		    $(".add-field", $(this)).click(function(e) {
-		    
-		        $('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').val('').focus();
-		    
+		    	
+		    	var $field =$('input[name^="choice"]:last');
+		    	var num = parseInt( $field.prop("name").match(/\d+/g), 10 ) +1;
+		    	$('.multi-field:first-child', $wrapper).clone(true).appendTo($wrapper).find('input').prop('name', 'choice'+num).focus();
+
+		        document.getElementById('count').value = num;
 		    });
 		    
 		    $('.multi-field .remove-field', $wrapper).click(function() {

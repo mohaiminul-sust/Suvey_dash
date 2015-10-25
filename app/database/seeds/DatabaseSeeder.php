@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder {
 		// 	exit('Application in production Mode ! No can do!!');
 		// }
 
-		Eloquent::unguard();
+
+		Eloquent::unguard(); //mass assignment enabler
 
 		$tables = [
 			'choices',
@@ -51,7 +52,7 @@ class DatabaseSeeder extends Seeder {
 		$this->command->info('\nSEEDING DONE !');
 
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-		
+
 
 	}
 

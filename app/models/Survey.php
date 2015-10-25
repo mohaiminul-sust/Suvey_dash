@@ -10,6 +10,10 @@ class Survey extends \Eloquent {
 		'title' => 'required|min:5'
 	];
 
+	public static $createSurveyRules = [
+		'surveyTitle' => 'required|min:5'
+	];
+
 	public function getSurveyCreatedDate(){
 
 	    return $this->created_at->format('d.m.Y');

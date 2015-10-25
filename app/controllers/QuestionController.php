@@ -30,17 +30,14 @@ class QuestionController extends BaseController{
 
 			}else if($questionType == 'mcq'){
 
-
-				$choice = Input::get('choices');
-
-				if(gettype($choice) == 'string'){
-
-					$choices[0] = $choice;
+				
+				for ($i=0; $i <= (int) Input::get('count'); $i++) { 
+					$choices[$i] = Input::get('choice'.$i);	
 				}
 
 				if(in_array('', $choices)){
 					
-					return Redirect::back()->withError('Input options correctly for MCQ !')->withInput();
+					return Redirect::back()->withError('Input options correctly for MCQ ! No Blank Options Allowed !')->withInput();
 
 				}else{
 
@@ -83,6 +80,7 @@ class QuestionController extends BaseController{
 	}
 
 	public function showUpdate($id){
+
 
 		return Redirect::back()->withError('Do show update code !');
 	}	

@@ -32,7 +32,23 @@ class SurveyController extends BaseController{
 
 
 	public function create(){
-		return 'write code to create survey!!';
+
+		$validator = Validator::make(Input::all(), Survey::$createSurveyRules);
+
+		if($validator->passes()){
+
+			$survey = new Survey;
+			$survey->title = Input::get('surveyTitle');
+			$survey->admin_users_id = Auth::user()->id;
+			$survey->save();
+
+			return Redirect::route('showSurvey', $survey->id)->withSuccess('Survey Created Successfully!! Add questions to your survey !');
+		}
+
+		return Redirect::back()
+			->withError('Validation Errors Occured !')
+			->withErrors($validator)
+			->withInput();
 	}
 
 	public function rename(){
