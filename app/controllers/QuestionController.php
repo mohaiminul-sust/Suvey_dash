@@ -39,6 +39,10 @@ class QuestionController extends BaseController{
 					
 					return Redirect::back()->withError('Input options correctly for MCQ ! No Blank Options Allowed !')->withInput();
 
+				}else if(count($choices)==1){
+					
+					return Redirect::back()->withError('Input options correctly for MCQ ! Only one option NOT Allowed !')->withInput();
+
 				}else{
 
 					$question = new Question;
