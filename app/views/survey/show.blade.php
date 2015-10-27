@@ -64,7 +64,7 @@
 									{{ $iter }}. {{ $question->body }}
 								</a>
 								<div class="pull-right">
-									<a data-toggle="modal" href="{{ URL::route('showUpdateQuestion', $question->id) }}" class="btn sr-btn btn-xs">
+									<a data-toggle="modal" href="#" onclick="toggleUpdate()" class="btn sr-btn btn-xs">
 					                    <i class="fa fa-pencil"></i> 
 					                </a>
 									<a data-toggle="modal" href="#deleteQuesConfModal" data-question-id="{{ $question->id }}" class="btn sr-btn btn-xs">
@@ -75,11 +75,14 @@
 						</div>
 						<div class="{{ Utils::getAccordianClass($question->type) }}" id="{{ Utils::getAccordianId($question->type, $iter) }}">
 							@if($question->type == 'mcq')
-								<div class="col-lg-offset-1">
+								<div class="col-lg-offset-1" id="labels">
 									<?php $i=1; ?>
 									@foreach ($question->choices as $choice)
 									<label>
-										{{ $i }}. {{ $choice->choice }}
+										{{ $i }}. 
+									</label>
+									<label>
+										{{ $choice->choice }}
 									</label><br>
 									<?php $i++; ?>
 									@endforeach
@@ -97,8 +100,9 @@
 		</section>
 
 	</div>
-
-	<div class="col-md-4">
+	
+	{{-- Add question --}}
+	<div class="col-md-4 add-question">
       <section class="panel">
           <header class="panel-heading">
               Add Question
@@ -147,14 +151,59 @@
 				 </div>
 
 	         <input type="hidden" name="surveyIdH" value="{{ $survey->id }}">
-			 <input type="hidden" id="count" value="0" name="count">
+			 <input type="hidden" id="count" value="" name="count">
 			
              {{ Form::submit('Add Question', array('class' => 'btn btn-success pull-right')) }}
 	     	{{ Form::close() }}
           </div> {{-- panel end --}}
 
       </section>
-  </div>
+    </div>
+
+
+	{{-- Update Question --}}
+    <div class="col-md-4 update-question" style="display:none">
+      <section class="panel">
+          <header class="panel-heading">
+              Edit Question
+              {{ Form::button('Back', ['class'=>'btn btn-danger btn-xs pull-right', 'onclick'=>'toggleUpdate()']) }}
+          </header>
+
+          <div class="panel-body">
+
+			  	{{ Form::open(['route' => ['updateQuestion'], 'method' => 'post', 'class' => 'form']) }}
+
+			 	 <div class="form-group">
+					{{ Form::label('Question Body', '',['class'=>'control-label']) }}
+					<div>
+						{{ Form::text('questionBody', '', ['class'=>'form-control', 'placeholder'=>'Enter question body']) }}
+					</div>
+				 </div>
+
+				 <div class="form-group multi-field-wrapper-update">
+				 	<div class="form-group form-inline">
+					 	{{ Form::label('Choices', '', ['class'=>'control-label']) }}
+					 	{{ Form::button('+', ['class'=>'add-field btn btn-success pull-right']) }}
+				 	</div>
+				 	<div class="form-group">				 	
+						<div class="multi-fields form-inline">
+							<div class="multi-field input-append">
+						 		{{ Form::text('choice0', '', ['class'=>'form-control', 'placeholder'=>'Enter a choice']) }}
+								{{ Form::button('-', ['class'=>'remove-field btn btn-danger']) }}
+							</div>
+						</div>
+				 	</div>
+				 </div>
+
+	         <input type="hidden" name="questionId" value="">
+			 <input type="hidden" id="count" value="" name="count">
+			
+             {{ Form::submit('Update Question', array('class' => 'btn btn-success pull-right')) }}
+	     	{{ Form::close() }}
+          </div> {{-- panel end --}}
+
+      </section>
+    </div>
 	
 </div>
 <!-- page end-->
@@ -186,7 +235,7 @@
 {{ Form::close() }}
 
 {{-- Survey delete confirmation modal --}}
-{{ Form::open(array('route' => ['destroySurvey'], 'method' => 'post', 'class' => 'form-signin')) }}
+{{ Form::open(array('route' => ['destroySurvey'], 'method' => 'post', 'class' => 'form')) }}
 
     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade" id="deleteConfModal">
      <div class="modal-dialog">
@@ -210,7 +259,7 @@
     </div>
 
 {{ Form::close() }}
-{{-- Question rename modal --}}
+{{-- Survey rename modal --}}
 {{ Form::open(array('route' => ['renameSurvey'], 'method' => 'post', 'class' => 'form-signin')) }}
 
     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" class="modal fade" id="renameModal">
@@ -243,6 +292,8 @@
 
 		$(document).ready(function(){
 
+			// $('.update-question').hide();
+
 			$('.radio-list').on('change', function() {
 		   
 			   var quesType = ($('input[name="questionTypeRadio"]:checked', '.radio-list').val());
@@ -270,13 +321,43 @@
 
 		    $(".add-field", $(this)).click(function(e) {
 		    	
-		    	var $field =$('input[name^="choice"]:last');
+		    	var $field =$('.multi-fields').find('input[name^="choice"]:last');
+		    	// alert(parseInt( $field.prop("name").match(/\d+/g), 10 ));
 		    	var num = parseInt( $field.prop("name").match(/\d+/g), 10 ) +1;
+		    	// alert(num);
+		    	$('.multi-field:first-child', $wrapper).fadeIn("normal", function(){
 
-		    	$('.multi-field:first-child', $wrapper).fadeIn("slow", function(){
+		    		$(this).clone(true).appendTo($wrapper).find('input').prop('name', 'choice'+num).val('').focus();	    	
+		    	});
 
-		    		$(this).clone(true).appendTo($wrapper).find('input').val('').prop('name', 'choice'+num).focus();
+		        document.getElementById('count').value = num;
+		    });
+		    
+		    $('.multi-field .remove-field', $wrapper).click(function() {
+		    
+		        if ($('.multi-field', $wrapper).length > 1)
+		    
+		            $(this).parent('.multi-field').fadeOut("normal", function(){
+		            	$(this).remove();
+		            });
+		    
+		    });
+		
+		});
+
+		$('.multi-field-wrapper-update').each(function() {
+		    
+		    var $wrapper = $('.multi-fields', this);
+
+		    $(".add-field", $(this)).click(function(e) {
 		    	
+		    	var $field =$('.multi-fields').find('input[name^="choice"]:last');
+		    	// alert(parseInt( $field.prop("name").match(/\d+/g), 10 ));
+		    	var num = parseInt( $field.prop("name").match(/\d+/g), 10 ) +1;
+		    	// alert(num);
+		    	$('.multi-field:first-child', $wrapper).fadeIn("normal", function(){
+
+		    		$(this).clone(true).appendTo($wrapper).find('input').prop('name', 'choice'+num).val('').focus();	    	
 		    	});
 
 		        document.getElementById('count').value = num;
@@ -327,6 +408,36 @@
            $(e.currentTarget).find('input[name="surveyId"]').val(surveyId);
 
         });
+    </script>
+	
+    <script type="text/javascript">
+		
+		function toggleUpdate(){
+
+			if($('.update-question').is(":visible")){
+
+				$('.update-question').fadeOut("normal", function(){
+					$(this).hide();
+				});
+
+				$('.add-question').fadeIn("normal", function(){
+					$(this).show();
+				});
+
+			}else{
+
+				$('.add-question').fadeOut("normal", function(){
+					$(this).hide();
+				});
+
+				$('.update-question').fadeIn("normal", function(){
+					$(this).show();
+					$(this).find('input[name="questionBody"]').focus();
+				});
+
+			}
+		}
+
     </script>
 	
 @stop

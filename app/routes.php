@@ -37,10 +37,8 @@ Route::group(['before' => 'auth'], function(){
 
 	Route::group(['prefix' => 'questions'], function(){
 		Route::post('/create', ['as' => 'createQuestion', 'uses' => 'QuestionController@create']);
-		Route::get('/update/{id}', ['as'=>'showUpdateQuestion', 'uses' => 'QuestionController@showUpdate']);
-		Route::post('/update/{id}', ['as' => 'doUpdateQuestion', 'uses' => 'QuestionController@update']);
+		Route::post('/update', ['as' => 'updateQuestion', 'uses' => 'QuestionController@update']);
 		Route::post('/destroy', ['as' => 'destroyQuestion', 'uses' => 'QuestionController@destroy']);
-		// Route::get('/show/{id}', ['as' => 'showSurvey', 'uses' => 'SurveyController@show']);
 	});
 
 });
