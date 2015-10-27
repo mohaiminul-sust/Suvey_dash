@@ -22,4 +22,16 @@ class Question extends \Eloquent {
 		return $this->hasMany('Choice', 'questions_id');
 	}
 
+	public function getChoices(){
+		
+		$ih=0;
+		$tempAra=array();
+
+		foreach ($this->choices as $child) {
+			$tempAra[] = $child->choice;
+		}
+		
+		return $tempAra;
+	}
+
 }

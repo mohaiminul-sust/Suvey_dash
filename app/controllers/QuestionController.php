@@ -91,7 +91,7 @@ class QuestionController extends BaseController{
 
 	public function update(){
 
-		return Redirect::back()->withError('Do update code !');
+		dd(Input::all());
 	}
 
 

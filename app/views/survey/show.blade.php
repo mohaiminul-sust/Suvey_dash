@@ -64,7 +64,7 @@
 									{{ $iter }}. {{ $question->body }}
 								</a>
 								<div class="pull-right">
-									<a data-toggle="modal" href="#" onclick="showUpdQ('{{ $question->type }}')" class="btn sr-btn btn-xs">
+									<a data-toggle="modal" href="#" onclick="showUpdQ('{{ $question->id }}','{{ $question->type }}', '{{ $question->body }}', '{{ $iter }}')" class="btn sr-btn btn-xs">
 					                    <i class="fa fa-pencil"></i> 
 					                </a>
 									<a data-toggle="modal" href="#deleteQuesConfModal" data-question-id="{{ $question->id }}" class="btn sr-btn btn-xs">
@@ -151,7 +151,7 @@
 				 </div>
 
 	         <input type="hidden" name="surveyIdH" value="{{ $survey->id }}">
-			 <input type="hidden" id="count" value="" name="count">
+			 <input type="hidden" id="count" value="0" name="count">
 			
              {{ Form::submit('Add Question', array('class' => 'btn btn-success pull-right')) }}
 	     	{{ Form::close() }}
@@ -196,7 +196,7 @@
 				 </div>
 
 	         <input type="hidden" name="questionId" value="">
-			 <input type="hidden" id="count" value="" name="count">
+			 <input type="hidden" id="count-upd" value="0" name="count-upd">
 			
              {{ Form::submit('Update Question', array('class' => 'btn btn-success pull-right')) }}
 	     	{{ Form::close() }}
@@ -335,11 +335,18 @@
 		    
 		    $('.multi-field .remove-field', $wrapper).click(function() {
 		    
-		        if ($('.multi-field', $wrapper).length > 1)
-		    
-		            $(this).parent('.multi-field').fadeOut("normal", function(){
+		        if ($('.multi-field', $wrapper).length > 1){
+		        	$(this).parent('.multi-field').fadeOut("normal", function(){
 		            	$(this).remove();
+		            	document.getElementById('count').value -= 1;
+		            	
+		            	var cnt= 0;
+		            	$('.multi-field-wrapper').find('.multi-field').find('input[name^="choice"]').each(function(){
+		            		$(this).prop('name', 'choice'+cnt);
+		            		cnt++;
+		            	});
 		            });
+		        }
 		    
 		    });
 		
@@ -351,7 +358,7 @@
 
 		    $(".add-field", $(this)).click(function(e) {
 		    	
-		    	var $field =$('.multi-fields').find('input[name^="choice"]:last');
+		    	var $field =$('.multi-field-wrapper-update').find('.multi-fields').find('input[name^="choice"]:last');
 		    	// alert(parseInt( $field.prop("name").match(/\d+/g), 10 ));
 		    	var num = parseInt( $field.prop("name").match(/\d+/g), 10 ) +1;
 		    	// alert(num);
@@ -360,16 +367,24 @@
 		    		$(this).clone(true).appendTo($wrapper).find('input').prop('name', 'choice'+num).val('').focus();	    	
 		    	});
 
-		        document.getElementById('count').value = num;
+		        document.getElementById('count-upd').value = num;
 		    });
 		    
 		    $('.multi-field .remove-field', $wrapper).click(function() {
 		    
-		        if ($('.multi-field', $wrapper).length > 1)
-		    
-		            $(this).parent('.multi-field').fadeOut("normal", function(){
+		        if ($('.multi-field', $wrapper).length > 1){
+
+		        	$(this).parent('.multi-field').fadeOut("normal", function(){
 		            	$(this).remove();
+		            	document.getElementById('count-upd').value -= 1;
+
+		            	var cnt= 0;
+		            	$('.multi-field-wrapper-update').find('.multi-field').find('input[name^="choice"]').each(function(){
+		            		$(this).prop('name', 'choice'+cnt);
+		            		cnt++;
+		            	});
 		            });
+		        }
 		    
 		    });
 		
@@ -412,7 +427,7 @@
 	
     <script type="text/javascript">
 		
-		function showUpdQ(questionType){
+		function showUpdQ(questionId, questionType, questionBody, iter){
 
 			$('.add-question').fadeOut("normal", function(){
 				$(this).hide();
@@ -425,13 +440,72 @@
 
 			if(questionType == 'mcq'){
 
+				$('.multi-field-wrapper-update').fadeIn("slow", function(){
+					$(this).show();
+				});
+				
+				//rem code
+
+				$('.multi-field-wrapper-update').find('input[name^="choice"]').each(function(){
+					
+					if($(this).attr("name") == "choice0"){
+						
+						$(this).val('');
+					
+					}else{
+					
+						$(this).parent('.multi-field').remove();
+		            	document.getElementById('count-upd').value -= 1;
+					}
+				});
+
+				var questionChoices = [];
+
+				$('#accordion1_'+iter).find('label').filter(':odd').each(function(){
+					questionChoices.push($.trim($(this).text()));
+				});
+				
+				
+				// alert(questionChoices);
+				$('.multi-field-wrapper-update').find('.multi-fields').find('input[name="choice0"]').val(questionChoices[0]);
+
+
+				for(i=1; i<questionChoices.length; i++){
+
+		    		var $field =$('.multi-field-wrapper-update').find('.multi-fields').find('input[name^="choice"]:last');
+			    	// alert(parseInt( $field.prop("name").match(/\d+/g), 10 ));
+			    	var num2 = parseInt( $field.prop("name").match(/\d+/g), 10 ) +1;
+			    	// alert(num2);
+			    	$('.multi-field:first-child', '.multi-field-wrapper-update').fadeIn("normal", function(){
+			    		// alert(questionChoices[i]);
+
+			    		var $div =  $(this).clone(true);
+			    		var $input = $div.find('input').prop('name', 'choice'+num2).val(questionChoices[i]);
+			    		var $button = $div.find('button').prop('class', 'remove-field btn btn-danger');
+
+			    		var $newDiv = $("<div>", {class: "multi-field"}).append($input);
+			    		$newDiv.append($button);
+						$('.multi-field-wrapper-update').find('.multi-fields').append($newDiv);
+
+			    	});
+
+			        document.getElementById('count-upd').value = num2;
+		    	
+				}
+
+				
 			}else if(questionType == 'written'){
 
 				$('.multi-field-wrapper-update').hide();
 			}
+
+			$('.update-question').find('input[name="questionBody"]').val(questionBody);
+			$('.update-question').find('input[name="questionId"]').val(questionId);
 		}
 
 		function showAddQ(){
+
+			
 			if($('.update-question').is(":visible")){
 
 				$('.update-question').fadeOut("normal", function(){
@@ -441,8 +515,11 @@
 				$('.add-question').fadeIn("normal", function(){
 					$(this).show();
 				});
-
 			}
+
+			// if(){
+
+			// }
 		}
 
     </script>

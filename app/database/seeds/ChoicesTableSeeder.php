@@ -7,7 +7,7 @@ class ChoicesTableSeeder extends Seeder {
         // DB::table('choices')->delete();
 
         $faker = Faker\Factory::create();
-        $questions_id = Question::all()->lists('id');
+        $questions_id = Question::where('type', 'mcq')->lists('id');
         
 
         for ($i=0; $i < 20; $i++) { 

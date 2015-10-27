@@ -11,6 +11,8 @@
 |
 */
 
+// Route::when('*', 'csrf', ['post', 'put', 'patch']);
+
 Route::get('/', ['as'=>'index','uses' => 'PublicController@home']);
 
 
