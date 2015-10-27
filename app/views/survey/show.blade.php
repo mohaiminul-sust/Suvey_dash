@@ -64,7 +64,7 @@
 									{{ $iter }}. {{ $question->body }}
 								</a>
 								<div class="pull-right">
-									<a data-toggle="modal" href="#" onclick="toggleUpdate()" class="btn sr-btn btn-xs">
+									<a data-toggle="modal" href="#" onclick="showUpdQ('{{ $question->type }}')" class="btn sr-btn btn-xs">
 					                    <i class="fa fa-pencil"></i> 
 					                </a>
 									<a data-toggle="modal" href="#deleteQuesConfModal" data-question-id="{{ $question->id }}" class="btn sr-btn btn-xs">
@@ -166,7 +166,7 @@
       <section class="panel">
           <header class="panel-heading">
               Edit Question
-              {{ Form::button('Back', ['class'=>'btn btn-danger btn-xs pull-right', 'onclick'=>'toggleUpdate()']) }}
+              {{ Form::button('Back', ['class'=>'btn btn-danger btn-xs pull-right', 'onclick'=>'showAddQ()']) }}
           </header>
 
           <div class="panel-body">
@@ -412,8 +412,26 @@
 	
     <script type="text/javascript">
 		
-		function toggleUpdate(){
+		function showUpdQ(questionType){
 
+			$('.add-question').fadeOut("normal", function(){
+				$(this).hide();
+			});
+
+			$('.update-question').fadeIn("normal", function(){
+				$(this).show();
+				$(this).find('input[name="questionBody"]').focus();
+			});
+
+			if(questionType == 'mcq'){
+
+			}else if(questionType == 'written'){
+
+				$('.multi-field-wrapper-update').hide();
+			}
+		}
+
+		function showAddQ(){
 			if($('.update-question').is(":visible")){
 
 				$('.update-question').fadeOut("normal", function(){
@@ -422,17 +440,6 @@
 
 				$('.add-question').fadeIn("normal", function(){
 					$(this).show();
-				});
-
-			}else{
-
-				$('.add-question').fadeOut("normal", function(){
-					$(this).hide();
-				});
-
-				$('.update-question').fadeIn("normal", function(){
-					$(this).show();
-					$(this).find('input[name="questionBody"]').focus();
 				});
 
 			}
