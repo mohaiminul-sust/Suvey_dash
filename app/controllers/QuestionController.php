@@ -83,11 +83,6 @@ class QuestionController extends BaseController{
 
 	}
 
-	public function showUpdate($id){
-
-
-		return Redirect::back()->withError('Do show update code !');
-	}	
 
 	public function update(){
 
