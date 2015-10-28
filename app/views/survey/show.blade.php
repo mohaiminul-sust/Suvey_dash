@@ -483,8 +483,8 @@
 			    		var $input = $div.find('input').prop('name', 'choice'+num2).val(questionChoices[i]);
 			    		var $button = $div.find('button').prop('class', 'remove-field btn btn-danger');
 
-			    		var $newDiv = $("<div>", {class: "multi-field"}).append($input);
-			    		$newDiv.append($button);
+			    		var $newDiv = $("<div>", {class: "multi-field"}).append($input).append($button);
+			    		// $newDiv.append($button);
 						$('.multi-field-wrapper-update').find('.multi-fields').append($newDiv);
 
 			    	});
