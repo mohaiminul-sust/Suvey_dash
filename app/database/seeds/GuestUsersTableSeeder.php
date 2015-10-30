@@ -12,7 +12,7 @@ class GuestUsersTableSeeder extends Seeder {
             
             GuestUser::create([
 
-                'username' => $faker->name,
+                'email' => $faker->unique()->email,
                 'password' => Hash::make('guestpass'),
                 'access_token' => Hash::make($faker->word)
                 

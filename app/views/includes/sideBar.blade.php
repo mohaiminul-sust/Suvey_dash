@@ -25,12 +25,12 @@ sidebar start-->
                   </li>
 
                   
-                  {{-- <li class="sub-menu">
-                      <a href="#">
+                  <li class="sub-menu">
+                      <a href="{{ URL::route('guests') }}">
                           <i class="fa fa-users"></i>
                           <span>Guests</span>
                       </a>
-                  </li> --}}
+                  </li>
 
                  {{--  <li class="sub-menu">
                       <a href="javascript:;">

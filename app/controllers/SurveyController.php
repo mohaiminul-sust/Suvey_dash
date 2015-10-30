@@ -5,19 +5,17 @@ class SurveyController extends BaseController{
 
 	public function index(){
 
-		$user_type= Role::where('id', Auth::user()->roles_id)->first()->type;
+		
 
-		if($user_type == 'super_admin'){
+		if(Auth::user()->role->type == 'super_admin'){
 			
 			return View::make('survey.index')->withSurveys(Survey::all())->with('user_type', $user_type);
 
-		}else if($user_type == 'admin'){
+		}else if(Auth::user()->role->type == 'admin'){
 
-			$user_id  = Auth::user()->id;
-			// return $user_id;
 			return View::make('survey.index')
-				->withSurveys(Survey::where('admin_users_id', $user_id)->get())
-				->with('user_type', $user_type);
+				->withSurveys(Survey::where('admin_users_id', Auth::user()->id)->get())
+				->with('user_type', Auth::user()->role->type);
 
 		}
 

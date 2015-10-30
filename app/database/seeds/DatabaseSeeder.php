@@ -43,15 +43,16 @@ class DatabaseSeeder extends Seeder {
 		$this->call('RolesTableSeeder');
 		$this->call('AdminUsersTableSeeder');
 		$this->call('SurveysTableSeeder');
-		$this->call('UsersTableSeeder');
+		$this->call('GuestUsersTableSeeder');
 		$this->call('TrackSurveysTableSeeder');
 		$this->call('QuestionsTableSeeder');
 		$this->call('AnswersTableSeeder');
 		$this->call('ChoicesTableSeeder');
 
+		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 		$this->command->info('...... SEEDING DONE ! ......');
 
-		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+		
 
 
 	}
