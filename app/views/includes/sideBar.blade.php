@@ -32,7 +32,7 @@ sidebar start-->
                       </a>
                       <ul class="sub">
                           <li><a  href="{{ URL::route('guests') }}"><i class="fa fa-users"></i>Guests</a></li>
-                          <li><a  href="#"><i class="fa fa-check-circle"></i>Surveys Done</a></li>
+                          <li><a  href="{{ URL::route('getSurvaysDone') }}"><i class="fa fa-check-circle"></i>Surveys Done</a></li>
                       </ul>
                   </li>
 

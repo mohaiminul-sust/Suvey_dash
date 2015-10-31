@@ -4,7 +4,7 @@
 	@include('includes.alert')
 	<section class="panel">
 	  <header class="panel-heading">
-	      Surveys done by {{ $guest->email }}
+	      Surveys done
 	  </header>
 	  <table class="table table-hover p-table">
 	      <thead>
@@ -15,8 +15,8 @@
               	<th>Created By</th>
               @endif
               <th>Questions</th>
-              <th>Location</th>
-              <th>Time taken</th>
+              <th>Completed By</th>
+              {{-- <th>Time taken</th> --}}
 	      </tr>
 	      </thead>
 	      <tbody>
@@ -26,12 +26,12 @@
              ?>
             <tr>
 	          <td class="p-name">
-	              <a href="{{ URL::route('showGuestSurveyAnswer', [$guest->id, $survey->id]) }}">{{ $survey->title }}</a>
+	              <a href="{{ URL::route('showSurvaysDone', $survey->id) }}">{{ $survey->title }}</a>
 	              <br>
 	              <small>Created {{ $survey->getSurveyCreatedDate() }} Updated {{ $survey->getSurveyUpdatedDate() }}</small>
 	          </td>
               <td>
-                <a href="{{ URL::route('showGuestSurveyAnswer', [$guest->id, $survey->id]) }}" class="btn btn-primary btn-xs">
+                <a href="{{ URL::route('showSurvaysDone', $survey->id) }}" class="btn btn-primary btn-xs">
                    <i class="fa fa-folder"></i> View 
                 </a>  
               </td>
@@ -44,10 +44,7 @@
                   {{ $survey->questions->count() }}
               </td>
 	          <td>
-	          	{{ $track_survey->lat }} , {{ $track_survey->lon }}
-	          </td>
-	          <td>
-	            {{ $track_survey->created_at }}  
+	          	{{ TrackSurvey::where('surveys_id', $survey->id)->count() }}
 	          </td>
 	        </tr>
 	      @endforeach

@@ -43,11 +43,19 @@ Route::group(['before' => 'auth'], function(){
 		Route::post('/destroy', ['as' => 'destroyQuestion', 'uses' => 'QuestionController@destroy']);
 	});
 
-	Route::group(['prefix'=> 'guests'], function(){
-		Route::get('/', ['as' => 'guests', 'uses' => 'GuestUsersController@index']);
-		Route::post('/destroy', ['as' => 'destroyGuest', 'uses' => 'GuestUsersController@destroy']);
-		Route::get('/{guest_id}/surveys', ['as'=> 'showGuestSurvey', 'uses' => 'GuestUsersController@showGuestSurvey']);
-		Route::get('/{guest_id}/surveys/{survey_id}', ['as'=> 'showGuestSurveyAnswer', 'uses' => 'GuestUsersController@showGuestSurveyAnswer']);
+	Route::group(['prefix'=>'response'], function(){
+
+		Route::group(['prefix'=> 'guests'], function(){
+			Route::get('/', ['as' => 'guests', 'uses' => 'GuestUsersController@index']);
+			Route::post('/destroy', ['as' => 'destroyGuest', 'uses' => 'GuestUsersController@destroy']);
+			Route::get('/{guest_id}/surveys', ['as'=> 'showGuestSurvey', 'uses' => 'GuestUsersController@showGuestSurvey']);
+			Route::get('/{guest_id}/surveys/{survey_id}', ['as'=> 'showGuestSurveyAnswer', 'uses' => 'GuestUsersController@showGuestSurveyAnswer']);
+		});
+
+		Route::group(['prefix'=>'surveys'], function(){
+			Route::get('/', ['as'=>'getSurvaysDone', 'uses'=>'SurveyController@getSurvaysDone']);
+			Route::get('/{survey_id}', ['as'=>'showSurvaysDone', 'uses'=>'SurveyController@showSurvaysDone']);
+		});
 
 	});
 
