@@ -15,8 +15,8 @@ class TrackSurveysTableSeeder extends Seeder {
         foreach (range(1, 5) as $i) {
             
             TrackSurvey::create([
-
-                'location' => $faker->state,
+                'lat' => $faker->latitude,
+                'lon' => $faker->longitude,
                 'surveys_id' => $faker->randomElement($surveys_id),
                 'users_id' => $faker->randomElement($users_id)
 

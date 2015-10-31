@@ -46,6 +46,7 @@ Route::group(['before' => 'auth'], function(){
 	Route::group(['prefix'=> 'guests'], function(){
 		Route::get('/', ['as' => 'guests', 'uses' => 'GuestUsersController@index']);
 		Route::post('/destroy', ['as' => 'destroyGuest', 'uses' => 'GuestUsersController@destroy']);
+		Route::get('/{guest_id}/surveys', ['as'=> 'showGuestSurvey', 'uses' => 'GuestUsersController@showGuestSurvey']);
 	});
 
 });

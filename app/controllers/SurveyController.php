@@ -9,7 +9,7 @@ class SurveyController extends BaseController{
 
 		if(Auth::user()->role->type == 'super_admin'){
 			
-			return View::make('survey.index')->withSurveys(Survey::all())->with('user_type', $user_type);
+			return View::make('survey.index')->withSurveys(Survey::all())->with('user_type', Auth::user()->role->type);
 
 		}else if(Auth::user()->role->type == 'admin'){
 

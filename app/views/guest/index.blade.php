@@ -25,7 +25,7 @@
         @foreach ($guests as $guest)
           <tr>
             <td class="p-name">
-                <a href="#">{{ $guest->email }}</a>
+                <a href="{{ URL::route('showGuestSurvey', $guest->id) }}">{{ $guest->email }}</a>
                 <br>
                 <small>Joined {{ $guest->getGuestCreatedDate() }}</small>
             </td>
