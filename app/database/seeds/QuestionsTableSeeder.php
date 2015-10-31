@@ -9,7 +9,7 @@ class QuestionsTableSeeder extends Seeder {
         $faker = Faker\Factory::create();
         $surveys_id = Survey::all()->lists('id');
 
-        for ($i=0; $i < 5; $i++) { 
+        for ($i=0; $i < 50; $i++) { 
             
             Question::create([
 

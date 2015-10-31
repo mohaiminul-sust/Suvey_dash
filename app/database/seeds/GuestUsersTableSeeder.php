@@ -8,7 +8,7 @@ class GuestUsersTableSeeder extends Seeder {
 
         $faker = Faker\Factory::create();
 
-        for ($i=0; $i < 5; $i++) { 
+        for ($i=0; $i < 20; $i++) { 
             
             GuestUser::create([
 

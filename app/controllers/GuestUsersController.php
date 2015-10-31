@@ -35,6 +35,7 @@ class GuestUsersController extends BaseController{
 			return View::make('guest.survey')->with('track_surveys' ,$trackSurveys)->withGuest(GuestUser::find($guest_id));
 
 		}else if (Auth::user()->role->type == 'admin') {
+			
 			$survey_ids = Survey::where('admin_users_id', Auth::user()->id)->lists('id');
 			$trackSurveys = DB::table('track_surveys')->where('users_id', $guest_id)->whereIn('surveys_id', $survey_ids)->get();
 			// return $trackSurveys;
@@ -50,8 +51,15 @@ class GuestUsersController extends BaseController{
 
 	}
 
-	public function showGuestSurveyAnswer($guest_id, $id){
-		return 'Do code';
+	public function showGuestSurveyAnswer($guest_id, $survey_id){
+		// return 'Do code '.$guest_id.' '.$survey_id;
+
+		$guest = GuestUser::find($guest_id);
+		$survey = Survey::find($survey_id);
+		$trackSurvey = DB::table('track_surveys')->where('users_id', $guest_id)->where('surveys_id', $survey_id)->get();
+		// return $trackSurvey;
+
+		return View::make('guest.answers')->with('track_survey', $trackSurvey)->withSurvey($survey)->withGuest($guest);
 	}
 
 	public function destroy(){

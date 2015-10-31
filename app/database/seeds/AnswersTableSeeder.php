@@ -11,7 +11,7 @@ class AnswersTableSeeder extends Seeder {
         $questions = Question::all()->lists('id');
         $users = User::all()->lists('id');
 
-        for ($i=0; $i < 5; $i++) { 
+        for ($i=0; $i < 150; $i++) { 
             
             Answer::create([
                 'body' => $faker->sentence($nbWords= 7),

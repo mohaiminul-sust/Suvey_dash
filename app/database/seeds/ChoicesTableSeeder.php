@@ -10,7 +10,7 @@ class ChoicesTableSeeder extends Seeder {
         $questions_id = Question::where('type', 'mcq')->lists('id');
         
 
-        for ($i=0; $i < 20; $i++) { 
+        for ($i=0; $i < 300; $i++) { 
             
             Choice::create([
 

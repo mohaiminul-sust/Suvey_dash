@@ -9,13 +9,15 @@
 	  <table class="table table-hover p-table">
 	      <thead>
 	      <tr>
-	          <th>Survey Name</th>
-	          @if (Auth::user()->role->type == 'super_admin')
-	          	<th>Created By</th>
-	          @endif
-	          <th>Location</th>
-
-	          <th>Survey taken</th>
+              <th>Survey Name</th>
+              <th></th> 
+              @if (Auth::user()->role->type == 'super_admin')
+              	<th>Created By</th>
+              @endif
+              <th>Questions</th>
+              <th>Location</th>
+              <th>Time taken</th>
+               
 	      </tr>
 	      </thead>
 	      <tbody>
@@ -25,15 +27,23 @@
              ?>
             <tr>
 	          <td class="p-name">
-	              <a href="#">{{ $survey->title }}</a>
+	              <a href="{{ URL::route('showGuestSurveyAnswer', [$guest->id, $survey->id]) }}">{{ $survey->title }}</a>
 	              <br>
 	              <small>Created {{ $survey->getSurveyCreatedDate() }} Updated {{ $survey->getSurveyUpdatedDate() }}</small>
 	          </td>
+              <td>
+                <a href="{{ URL::route('showGuestSurveyAnswer', [$guest->id, $survey->id]) }}" class="btn btn-primary btn-xs">
+                   <i class="fa fa-folder"></i> View 
+                </a>  
+              </td>
 	          @if (Auth::user()->role->type == 'super_admin')
 	          	<td class="p-name">
 		          {{ $survey->user->username }}
 		        </td>
 	          @endif
+              <td>
+                  {{ $survey->questions->count() }}
+              </td>
 	          <td>
 	          	{{ $track_survey->lat }} , {{ $track_survey->lon }}
 	          </td>

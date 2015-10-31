@@ -12,7 +12,7 @@ class TrackSurveysTableSeeder extends Seeder {
         $users_id = GuestUser::all()->lists('id');
 
 
-        foreach (range(1, 5) as $i) {
+        foreach (range(1, 200) as $i) {
             
             TrackSurvey::create([
                 'lat' => $faker->latitude,

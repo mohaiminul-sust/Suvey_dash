@@ -11,8 +11,8 @@ sidebar start-->
                           <span>Super Admin</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="{{ URL::route('manageAdmins') }}">Manage Admins</a></li>
-                          <li><a  href="{{ URL::route('showCreateAdmin') }}">Create Admin</a></li>
+                          <li><a  href="{{ URL::route('manageAdmins') }}"><i class="fa fa-gear"></i>Manage Admins</a></li>
+                          <li><a  href="{{ URL::route('showCreateAdmin') }}"><i class="fa fa-plus-square"></i>Create Admin</a></li>
                       </ul>
                     </li>
                   @endif
@@ -26,10 +26,14 @@ sidebar start-->
 
                   
                   <li class="sub-menu">
-                      <a href="{{ URL::route('guests') }}">
-                          <i class="fa fa-users"></i>
-                          <span>Guests</span>
+                      <a href="javascript:;">
+                          <i class="fa fa-reply-all"></i>
+                          <span>Response</span>
                       </a>
+                      <ul class="sub">
+                          <li><a  href="{{ URL::route('guests') }}"><i class="fa fa-users"></i>Guests</a></li>
+                          <li><a  href="#"><i class="fa fa-check-circle"></i>Surveys Done</a></li>
+                      </ul>
                   </li>
 
                  {{--  <li class="sub-menu">
