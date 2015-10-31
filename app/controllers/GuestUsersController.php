@@ -28,18 +28,30 @@ class GuestUsersController extends BaseController{
 			
 			$trackSurveys = TrackSurvey::where('users_id', $guest_id)->get();
 			
+			if($trackSurveys->isEmpty()){
+				return Redirect::back()->withError('No survey completed yet!');
+			}
+
 			return View::make('guest.survey')->with('track_surveys' ,$trackSurveys)->withGuest(GuestUser::find($guest_id));
 
 		}else if (Auth::user()->role->type == 'admin') {
 			$survey_ids = Survey::where('admin_users_id', Auth::user()->id)->lists('id');
 			$trackSurveys = DB::table('track_surveys')->where('users_id', $guest_id)->whereIn('surveys_id', $survey_ids)->get();
 			// return $trackSurveys;
-
+			if($trackSurveys->isEmpty()){
+				
+				return Redirect::back()->withError('No survey completed yet!');
+				
+			}
 			return View::make('guest.survey')->with('track_surveys' ,$trackSurveys)->withGuest(GuestUser::find($guest_id));
 
 		}
 
 
+	}
+
+	public function showGuestSurveyAnswer($guest_id, $id){
+		return 'Do code';
 	}
 
 	public function destroy(){
