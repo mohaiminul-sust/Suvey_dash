@@ -4,10 +4,7 @@ class TrackSurvey extends \Eloquent {
 	
 	protected $table = 'track_surveys';
 
-	protected $fillable = ['location'];
+	protected $fillable = ['lat', 'lon'];
 
-	public static $rules = [
-		'location' => 'required|min:3|unique:users'
-	];
 
 }

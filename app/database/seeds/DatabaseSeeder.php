@@ -36,22 +36,23 @@ class DatabaseSeeder extends Seeder {
 			DB::table($table)->truncate();
 		}
 		
-		$this->command->info('Tables Truncated !');
+		$this->command->info('...... Tables Truncated ......');
 
-		$this->command->info('...... SEEDING ...... !');
+		$this->command->info('...... SEEDING ......');
 
 		$this->call('RolesTableSeeder');
 		$this->call('AdminUsersTableSeeder');
 		$this->call('SurveysTableSeeder');
-		$this->call('UsersTableSeeder');
+		$this->call('GuestUsersTableSeeder');
 		$this->call('TrackSurveysTableSeeder');
 		$this->call('QuestionsTableSeeder');
 		$this->call('AnswersTableSeeder');
 		$this->call('ChoicesTableSeeder');
 
-		$this->command->info('\nSEEDING DONE !');
-
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+		$this->command->info('...... SEEDING DONE ! ......');
+
+		
 
 
 	}

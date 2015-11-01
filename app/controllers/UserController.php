@@ -10,14 +10,16 @@ class UserController extends BaseController{
 	}
 
 	public function doLogin(){
-		
+		// dd(Input::all());
 		$credentials = [
 			'username'	=>	Input::get('username'),
 			'password'	=>	Input::get('password')
 			
 		];
 
-		if (Auth::attempt($credentials))
+		$remember = (Input::has('remember')) ? true :false;
+
+		if (Auth::attempt($credentials, $remember))
 		{
 
 		    return Redirect::intended('dashboard')->withInfo(Auth::user()->username.' logged in successfully!');

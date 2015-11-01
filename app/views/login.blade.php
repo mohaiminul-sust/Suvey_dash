@@ -12,7 +12,11 @@
 
             {{ Form::text('username', '',['class' => 'form-control', 'placeholder' => 'Enter Username', 'autofocus']) }}
             {{ Form::password('password', ['class' => 'form-control', 'placeholder' => '********']) }}
-
+			<div class="checkbox">
+              	<label for="remember">
+                  	<input type="checkbox" name="remember" id="remember"> Remember me
+              	</label>
+	        </div>
             {{ Form::submit('Log in', ['class' => 'btn btn-lg btn-login btn-block']) }}
         </div>
 

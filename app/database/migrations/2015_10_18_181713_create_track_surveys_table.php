@@ -15,7 +15,8 @@ class CreateTrackSurveysTable extends Migration {
 		Schema::create('track_surveys', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('location');
+			$table->string('lat');
+			$table->string('lon');
 			$table->timestamps();
 		});
 	}

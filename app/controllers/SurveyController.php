@@ -5,19 +5,15 @@ class SurveyController extends BaseController{
 
 	public function index(){
 
-		$user_type= Role::where('id', Auth::user()->roles_id)->first()->type;
-
-		if($user_type == 'super_admin'){
+		if(Auth::user()->role->type == 'super_admin'){
 			
-			return View::make('survey.index')->withSurveys(Survey::all())->with('user_type', $user_type);
+			return View::make('survey.index')->withSurveys(Survey::all())->with('user_type', Auth::user()->role->type);
 
-		}else if($user_type == 'admin'){
+		}else if(Auth::user()->role->type == 'admin'){
 
-			$user_id  = Auth::user()->id;
-			// return $user_id;
 			return View::make('survey.index')
-				->withSurveys(Survey::where('admin_users_id', $user_id)->get())
-				->with('user_type', $user_type);
+				->withSurveys(Survey::where('admin_users_id', Auth::user()->id)->get())
+				->with('user_type', Auth::user()->role->type);
 
 		}
 
@@ -28,8 +24,32 @@ class SurveyController extends BaseController{
 		$survey = Survey::find($id);
 
 		return View::make('survey.show')->withSurvey($survey);
+
 	}
 
+	public function getSurvaysDone(){
+
+		$trackSurveys = DB::table('track_surveys')->groupby('surveys_id')->get();
+
+		// return $trackSurveys;
+		return View::make('survey.done')->with('track_surveys', $trackSurveys);
+
+	}
+
+	public function showSurvaysDone($survey_id){
+		
+		$survey = Survey::find($survey_id);
+		
+		// $trackSurvey = DB::table('track_surveys')->where('surveys_id', $survey_id)->get();
+		// return $survey;
+
+		$ques_ids = Question::where('surveys_id', $survey_id)->lists('id'); 
+		$perQACount = Answer::whereIn('questions_id', $ques_ids)->groupby('questions_id')->get()->count();
+
+		// return $perQACount;
+		return View::make('survey.showDone')->withSurvey($survey)->with('QA_count', $perQACount);
+	
+	}
 
 	public function create(){
 
@@ -49,14 +69,17 @@ class SurveyController extends BaseController{
 			->withError('Validation Errors Occured !')
 			->withErrors($validator)
 			->withInput();
+	
 	}
 
 	public function rename(){
+
 		$survey = Survey::find(Input::get('surveyId'));
 		$survey->title = Input::get('surveyTitle');
 		$survey->save();
 
 		return Redirect::back()->withSuccess('Survey renamed to \''.$survey->title.'\'');
+	
 	}
 
 	public function destroy(){

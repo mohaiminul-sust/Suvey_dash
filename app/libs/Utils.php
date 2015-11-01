@@ -18,4 +18,31 @@ class Utils{
 			echo "panel-collapse collapse";
 		}
 	} 
+
+	function getAddressFromCoordinates($lat, $lon) {
+
+		$url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lon&sensor=false";
+
+		// Make the HTTP request
+		$data = @file_get_contents($url);
+		// Parse the json response
+		$jsondata = json_decode($data,true);
+
+		// If the json data is invalid, return empty array
+		if (!check_status($jsondata))   return array();
+
+		$address = array(
+		    'country' => google_getCountry($jsondata),
+		    'province' => google_getProvince($jsondata),
+		    'city' => google_getCity($jsondata),
+		    'street' => google_getStreet($jsondata),
+		    'postal_code' => google_getPostalCode($jsondata),
+		    'country_code' => google_getCountryCode($jsondata),
+		    'formatted_address' => google_getAddress($jsondata),
+		);
+
+		return $address;
+	}
+
+		
 }

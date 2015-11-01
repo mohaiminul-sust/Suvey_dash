@@ -24,7 +24,7 @@ Route::group(['before' => 'guest'], function (){
 Route::group(['before' => 'auth'], function(){
 	Route::get('logout', ['as' => 'logout', 'uses' => 'UserController@doLogout']);
 	Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
-	Route::get('resetpass', ['as' => 'resetPassword', 'uses' => 'UserController@resetPassword']);
+	// Route::get('resetpass', ['as' => 'resetPassword', 'uses' => 'UserController@resetPassword']);
 });
 
 Route::group(['before' => 'auth'], function(){
@@ -41,6 +41,22 @@ Route::group(['before' => 'auth'], function(){
 		Route::post('/create', ['as' => 'createQuestion', 'uses' => 'QuestionController@create']);
 		Route::post('/update', ['as' => 'updateQuestion', 'uses' => 'QuestionController@update']);
 		Route::post('/destroy', ['as' => 'destroyQuestion', 'uses' => 'QuestionController@destroy']);
+	});
+
+	Route::group(['prefix'=>'response'], function(){
+
+		Route::group(['prefix'=> 'guests'], function(){
+			Route::get('/', ['as' => 'guests', 'uses' => 'GuestUsersController@index']);
+			Route::post('/destroy', ['as' => 'destroyGuest', 'uses' => 'GuestUsersController@destroy']);
+			Route::get('/{guest_id}/surveys', ['as'=> 'showGuestSurvey', 'uses' => 'GuestUsersController@showGuestSurvey']);
+			Route::get('/{guest_id}/surveys/{survey_id}', ['as'=> 'showGuestSurveyAnswer', 'uses' => 'GuestUsersController@showGuestSurveyAnswer']);
+		});
+
+		Route::group(['prefix'=>'surveys'], function(){
+			Route::get('/', ['as'=>'getSurvaysDone', 'uses'=>'SurveyController@getSurvaysDone']);
+			Route::get('/{survey_id}', ['as'=>'showSurvaysDone', 'uses'=>'SurveyController@showSurvaysDone']);
+		});
+
 	});
 
 });

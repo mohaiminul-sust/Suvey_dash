@@ -7,9 +7,9 @@
 	<header class="panel-heading">
 		Survey Details
 		<div class="pull-right">
-			<a data-toggle="modal" href="#createModal" class="btn btn-success btn-xs">
+			{{-- <a data-toggle="modal" href="#createModal" class="btn btn-success btn-xs">
 		        <i class="fa fa-plus-square"></i> Create 
-		    </a>
+		    </a> --}}
 			<a data-toggle="modal" href="#renameModal" data-survey-id= "{{ $survey->id }}" data-survey-title="{{ $survey->title }}" class="btn btn-info btn-xs">
 			    <i class="fa fa-pencil"></i> Rename 
 			</a>
@@ -23,7 +23,7 @@
 	<div class="col-md-8">
 		<section class="panel">
 			<div class="bio-graph-heading project-heading">
-				<strong> [ {{ $survey->title }} ] </strong>
+				<h2>  {{ $survey->title }}  </h2>
 			</div>
 			<div class="panel-body bio-graph-info">
 				<!--<h1>New Dashboard BS3 </h1>-->
@@ -516,10 +516,7 @@
 					$(this).show();
 				});
 			}
-
-			// if(){
-
-			// }
+			
 		}
 
     </script>

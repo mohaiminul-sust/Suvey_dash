@@ -25,7 +25,7 @@ class Question extends \Eloquent {
 	public function getChoices(){
 		
 		$ih=0;
-		$tempAra=array();
+		$tempAra= [];
 
 		foreach ($this->choices as $child) {
 			$tempAra[] = $child->choice;

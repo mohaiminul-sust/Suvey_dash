@@ -17,7 +17,7 @@ class AdminUsersTableSeeder extends Seeder {
          	'roles_id'    =>  $super_admin_role_id
         ]);
 
-        foreach (range(1, 5) as $i) {
+        foreach (range(1, 10) as $i) {
 			User::create([
 	            'username'    =>  $faker->firstname,
 	            'password'    =>  Hash::make('admindev'),
