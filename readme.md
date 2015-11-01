@@ -1,8 +1,8 @@
-## Laravel PHP Framework
+## Survey admin panel + REST API with Laravel PHP Framework
 
 [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
-Back-end application and admin/superuser dashboard in Laravel 4 Survey App
+RESTful API for ANDROID and admin/superuser dashboard in Laravel 4.2
 
 ### Contributing To this project
 
