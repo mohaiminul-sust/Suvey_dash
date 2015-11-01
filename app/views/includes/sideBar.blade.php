@@ -18,10 +18,14 @@ sidebar start-->
                   @endif
 
                   <li class="sub-menu">
-                      <a href="{{ URL::route('surveys') }}">
+                      <a href="javascript:;">
                           <i class="fa fa-book"></i>
                           <span>Surveys</span>
                       </a>
+                      <ul class="sub">
+                          <li><a  href="{{ URL::route('surveys') }}"><i class="fa fa-gear"></i>Manage Surveys</a></li>
+                          <li><a  href="{{ URL::route('getSurvaysDone') }}"><i class="fa fa-check-circle"></i>Surveys Done</a></li>
+                      </ul>
                   </li>
 
                   
