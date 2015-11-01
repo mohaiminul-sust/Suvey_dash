@@ -75,18 +75,30 @@
 
 							@endif
 						</div>
-						<div id="answer">
+						<div id="answer" class="room-desk">
+							<h5 class="pull-left"><strong>Answers :</strong> </h5>
 							<?php 
 								$answers = Answer::where('questions_id', $question->id)->get();
 							 ?>
 							 @if ($answers->isEmpty())
-							 	{{ 'No answers given by guests!' }}<br>
+							 	{{-- {{ 'No answers given by guests!' }}<br> --}}
+							 	<div class="room-box">
+	                              <h5 class="text-primary">No answers given by guests yet !</h5>
+	                              {{-- <p>No answers given by guests yet</p> --}}
+						 		</div>
 							 @elseif($answers)
 							 	@foreach ($answers as $answer)
-							 		{{ $answer->body }} <small>by {{ GuestUser::find($answer->users_id)->email }}</small><br>
+							 		{{-- {{ $answer->body }} <small>by {{ GuestUser::find($answer->users_id)->email }}</small><br> --}}
+							 		<div class="room-box">
+		                              <h5 class="text-primary"><a href="{{ URL::route('showGuestSurvey', GuestUser::find($answer->users_id)->id) }}">{{ GuestUser::find($answer->users_id)->email }}</a></h5>
+		                              <p>{{ $answer->body }}</p>
+		                              <?php 
+		                              	$info = TrackSurvey::where('users_id', $answer->users_id)->first();
+		                               ?>
+		                              <p><span class="text-muted">Answered at :</span> {{ $info->created_at }} | <span class="text-muted">Location :</span> {{ $info->lat }}, {{ $info->lon }}</p>
+							 		</div>
 							 	@endforeach
 							 @endif
-							 
 						</div>
 					</div>
 					<?php $iter++; ?>

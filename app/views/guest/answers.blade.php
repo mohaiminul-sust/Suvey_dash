@@ -5,7 +5,7 @@
 <!-- page start-->
 <section class="panel">
 	<header class="panel-heading">
-		Survey Answers
+		Survey Answers by {{ $guest->email }}
 	</header>
 </section>
 <div class="row">
@@ -78,19 +78,26 @@
 
 							@endif
 						</div>
-						<div id="answer">
+						<div id="answer" class="room-desk">
+							<h5 class="pull-left"><strong>Answer :</strong> </h5>
 							<?php 
 								$answers = Answer::where('questions_id', $question->id)->where('users_id', $guest->id)->get();
-								
 							 ?>
 							 @if ($answers->isEmpty())
-							 	{{ 'No answers given !' }}
+							 	{{-- {{ 'No answers given by guests!' }}<br> --}}
+							 	<div class="room-box">
+	                              <h5 class="text-primary">No answers given yet !</h5>
+	                              {{-- <p>No answers given by guests yet</p> --}}
+						 		</div>
 							 @elseif($answers)
 							 	@foreach ($answers as $answer)
-							 		{{ $answer->body }} <small>by {{ GuestUser::find($answer->users_id)->email }}</small>
+							 		
+							 		<div class="room-box">
+		                              <h5 class="text-primary"><a href="{{ URL::route('showGuestSurvey', $guest->id) }}">{{ $guest->email }}</a></h5>
+		                              <p>{{ $answer->body }}</p>
+							 		</div>
 							 	@endforeach
 							 @endif
-							 
 						</div>
 					</div>
 					<?php $iter++; ?>
