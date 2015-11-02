@@ -19,7 +19,8 @@ class Utils{
 		}
 	} 
 
-	function getAddressFromCoordinates($lat, $lon) {
+	//Works for googles reverse-geocoding
+	public static function getAddressFromCoordinates($lat, $lon) {
 
 		$url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lon&sensor=false";
 
@@ -29,7 +30,7 @@ class Utils{
 		$jsondata = json_decode($data,true);
 
 		// If the json data is invalid, return empty array
-		if (!check_status($jsondata))   return array();
+		// if (!check_status($jsondata))   return array();
 
 		$address = array(
 		    'country' => google_getCountry($jsondata),
@@ -41,7 +42,7 @@ class Utils{
 		    'formatted_address' => google_getAddress($jsondata),
 		);
 
-		return $address;
+		return $address['city'].' ,'.$address['country'];
 	}
 
 		

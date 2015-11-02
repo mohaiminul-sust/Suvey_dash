@@ -45,6 +45,7 @@
               </td>
 	          <td>
 	          	{{ $track_survey->lat }} , {{ $track_survey->lon }}
+	          	{{-- {{ Utils::getAddressFromCoordinates($track_survey->lat, $track_survey->lon) }} --}}
 	          </td>
 	          <td>
 	            {{ $track_survey->created_at }}  

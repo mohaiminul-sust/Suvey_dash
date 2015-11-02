@@ -29,26 +29,35 @@ class SurveyController extends BaseController{
 
 	public function getSurvaysDone(){
 
-		$trackSurveys = DB::table('track_surveys')->groupby('surveys_id')->get();
+		if(Auth::user()->role->type == 'admin'){
+			$survey_ids = Survey::where('admin_users_id', Auth::user()->id)->lists('id');
+			$trackSurveys = DB::table('track_surveys')->whereIn('surveys_id', $survey_ids)->groupby('surveys_id')->get();
 
-		// return $trackSurveys;
-		return View::make('survey.done')->with('track_surveys', $trackSurveys);
+			// return $trackSurveys;
+			return View::make('survey.done')->with('track_surveys', $trackSurveys);
 
+		}else if(Auth::user()->role->type == 'super_admin'){
+			$trackSurveys = DB::table('track_surveys')->groupby('surveys_id')->get();
+
+			// return $trackSurveys;
+			return View::make('survey.done')->with('track_surveys', $trackSurveys);
+
+		}
 	}
 
 	public function showSurvaysDone($survey_id){
 		
-		$survey = Survey::find($survey_id);
+			$survey = Survey::find($survey_id);
 		
-		// $trackSurvey = DB::table('track_surveys')->where('surveys_id', $survey_id)->get();
-		// return $survey;
+			// $trackSurvey = DB::table('track_surveys')->where('surveys_id', $survey_id)->get();
+			// return $survey;
 
-		$ques_ids = Question::where('surveys_id', $survey_id)->lists('id'); 
-		$perQACount = Answer::whereIn('questions_id', $ques_ids)->groupby('questions_id')->get()->count();
+			$ques_ids = Question::where('surveys_id', $survey_id)->lists('id'); 
+			$perQACount = Answer::whereIn('questions_id', $ques_ids)->groupby('questions_id')->get()->count();
 
-		// return $perQACount;
-		return View::make('survey.showDone')->withSurvey($survey)->with('QA_count', $perQACount);
-	
+			// return $perQACount;
+			return View::make('survey.showDone')->withSurvey($survey)->with('QA_count', $perQACount);
+		
 	}
 
 	public function create(){
