@@ -15,6 +15,9 @@
 
 Route::get('/', ['as'=>'index','uses' => 'PublicController@home']);
 
+Route::group(['prefix'=>'api/v1'], function(){
+	Route::resource('survey', 'ApiSurveyController');
+});
 
 Route::group(['before' => 'guest'], function (){
 	Route::get('login', ['as'=>'login','uses' => 'UserController@showLogin']);
