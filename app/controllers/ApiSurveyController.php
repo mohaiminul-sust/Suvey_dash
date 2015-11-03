@@ -1,18 +1,20 @@
 <?php
 
 use Sorskod\Larasponse\Larasponse;
-use Optimus\Surveys\SurveyTransformer;
+use Optimus\SurveyTransformer;
 
-class ApiSurveysController extends \BaseController {
+class ApiSurveyController extends \BaseController {
 
 
 	protected $fractal;
 
-    public function __construct(Larasponse $fractal)
+	public function __construct(Larasponse $fractal)
     {
         $this->fractal = $fractal;
-        // $this->fractal->parseIncludes(Input::get('includes'));
     }
+	
+
+
 
 	/**
 	 * Display a listing of the resource.
@@ -21,8 +23,7 @@ class ApiSurveysController extends \BaseController {
 	 */
 	public function index()
 	{
-		$surveys = Survey::all(); //for testing purpose
-		dd($this->fractal);
+		$surveys = Survey::all();
 		return $this->fractal->collection($surveys, new SurveyTransformer());
 	}
 
@@ -41,7 +42,7 @@ class ApiSurveysController extends \BaseController {
 	    {
 	        return Response::json([
 	            'error' => [
-	                'message' => 'Not found!',
+	                'message' => 'Survey not found!',
 	                'status_code' => 404
 	            ]
 	        ], 404);

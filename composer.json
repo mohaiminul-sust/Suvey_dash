@@ -23,7 +23,11 @@
 		],
 
 		"psr-4": {
+<<<<<<< HEAD
 			"Optimus\\": "app/Optimus"
+=======
+			"Optimus\\": "app/optimus"
+>>>>>>> e51ff71cded6b763fefd291e7b67aa84f7968f8c
 		}
 	},
 	"scripts": {
