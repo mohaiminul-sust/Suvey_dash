@@ -7,7 +7,9 @@
 		"laravel/framework": "4.2.*",
 		"fzaninotto/faker": "^1.5",
 		"intervention/image": "^2.3",
-		"gathercontent/laravel-fractal": "~0.1"
+		"gathercontent/laravel-fractal": "~0.1",
+		"jcf/geocode": "1.0.*",
+		"tymon/jwt-auth": "0.5.*"
 	},
 	"require-dev": {
     	"way/generators": "~2.0"
