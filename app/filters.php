@@ -22,6 +22,25 @@ App::after(function($request, $response)
 	//
 });
 
+
+App::error(function(\Lahaxearnaud\LaravelToken\exeptions\TokenException $exception)
+{
+    if($exception instanceof \Lahaxearnaud\LaravelToken\exeptions\TokenNotFoundException) {
+        return \Response::make('Unauthorized (Not found)', 401);
+    }
+
+    if($exception instanceof \Lahaxearnaud\LaravelToken\exeptions\TokenNotValidException) {
+        return \Response::make('Unauthorized (Not valid token)', 401);
+    }
+
+    if($exception instanceof \Lahaxearnaud\LaravelToken\exeptions\UserNotLoggableByTokenException) {
+        return \Response::make('Unauthorized (Not loggable by token)', 401);
+    }
+
+    if($exception instanceof \Lahaxearnaud\LaravelToken\exeptions\NotLoginTokenException) {
+        return \Response::make('Unauthorized (Not login token)', 401);
+    }
+});
 /*
 |--------------------------------------------------------------------------
 | Authentication Filters

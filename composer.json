@@ -9,7 +9,7 @@
 		"intervention/image": "^2.3",
 		"gathercontent/laravel-fractal": "~0.1",
 		"jcf/geocode": "1.0.*",
-		"antarctica/laravel-token-auth": "0.1.*"
+		"lahaxearnaud/laravel-token": "~0.5"
 
 	},
 	"require-dev": {
