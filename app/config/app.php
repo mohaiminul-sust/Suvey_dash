@@ -124,7 +124,7 @@ return array(
 		'Way\Generators\GeneratorsServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 		'GatherContent\LaravelFractal\LaravelFractalServiceProvider',
-		'Jcf\Geocode\GeocodeServiceProvider',
+		'Jcf\Geocode\GeocodeServiceProvider'
 	),
 
 	/*
@@ -193,7 +193,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Image' 		  => 'Intervention\Image\Facades\Image',
 		'Fractal' 		  => 'GatherContent\LaravelFractal\LaravelFractalFacade',
-		'Geocode'         => 'Jcf\Geocode\Facades\Geocode',
+		'Geocode'         => 'Jcf\Geocode\Facades\Geocode'
 
 	),
 
