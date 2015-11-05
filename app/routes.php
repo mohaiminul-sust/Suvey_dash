@@ -12,9 +12,18 @@
 */
 
 // Route::when('*', 'csrf', ['post', 'put', 'patch']);
+App::bind('League\Fractal\Serializer\SerializerAbstract', 'League\Fractal\Serializer\DataArraySerializer');
 
 Route::get('/', ['as'=>'index','uses' => 'PublicController@home']);
 
+Route::group(['prefix'=>'api/v1'], function(){
+<<<<<<< HEAD
+	Route::get('surveys', 'ApiSurveysController@index');
+	Route::get('surveys/{id}', 'ApiSurveysController@show');
+=======
+	Route::resource('survey', 'ApiSurveyController');
+>>>>>>> e51ff71cded6b763fefd291e7b67aa84f7968f8c
+});
 
 Route::group(['before' => 'guest'], function (){
 	Route::get('login', ['as'=>'login','uses' => 'UserController@showLogin']);
