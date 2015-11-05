@@ -12,7 +12,7 @@
 */
 
 // Route::when('*', 'csrf', ['post', 'put', 'patch']);
-App::bind('League\Fractal\Serializer\SerializerAbstract', 'League\Fractal\Serializer\DataArraySerializer');
+// App::bind('League\Fractal\Serializer\SerializerAbstract', 'League\Fractal\Serializer\DataArraySerializer');
 
 Route::get('/', ['as'=>'index','uses' => 'PublicController@home']);
 
