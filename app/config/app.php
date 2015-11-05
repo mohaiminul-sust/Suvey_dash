@@ -123,7 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
-		'Sorskod\Larasponse\LarasponseServiceProvider',
+		'GatherContent\LaravelFractal\LaravelFractalServiceProvider',
 	),
 
 	/*
@@ -191,6 +191,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Image' 		  => 'Intervention\Image\Facades\Image',
+		'Fractal' 		  => 'GatherContent\LaravelFractal\LaravelFractalFacade',
 
 	),
 

@@ -1,18 +1,9 @@
 <?php
 
-use Sorskod\Larasponse\Larasponse;
 use Optimus\Surveys\SurveyTransformer;
 
 class ApiSurveysController extends \BaseController {
 
-
-	protected $fractal;
-
-    public function __construct(Larasponse $fractal)
-    {
-        $this->fractal = $fractal;
-        // $this->fractal->parseIncludes(Input::get('includes'));
-    }
 
 	/**
 	 * Display a listing of the resource.
@@ -21,9 +12,9 @@ class ApiSurveysController extends \BaseController {
 	 */
 	public function index()
 	{
-		$surveys = Survey::all(); //for testing purpose
-		dd($this->fractal);
-		return $this->fractal->collection($surveys, new SurveyTransformer());
+		$surveys = Survey::all(); 
+
+		return Fractal::collection($surveys, new SurveyTransformer);
 	}
 
 
@@ -47,7 +38,7 @@ class ApiSurveysController extends \BaseController {
 	        ], 404);
 	    }
 
-	    return $this->fractal->item($survey, new SurveyTransformer());
+	    return Fractal::item($survey, new SurveyTransformer());
 	}
 
 

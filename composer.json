@@ -7,7 +7,7 @@
 		"laravel/framework": "4.2.*",
 		"fzaninotto/faker": "^1.5",
 		"intervention/image": "^2.3",
-		"sorskod/larasponse": "~1.0"
+		"gathercontent/laravel-fractal": "~0.1"
 	},
 	"require-dev": {
     	"way/generators": "~2.0"
@@ -23,11 +23,7 @@
 		],
 
 		"psr-4": {
-<<<<<<< HEAD
 			"Optimus\\": "app/Optimus"
-=======
-			"Optimus\\": "app/optimus"
->>>>>>> e51ff71cded6b763fefd291e7b67aa84f7968f8c
 		}
 	},
 	"scripts": {
