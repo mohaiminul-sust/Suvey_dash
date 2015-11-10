@@ -8,9 +8,7 @@
 		"fzaninotto/faker": "^1.5",
 		"intervention/image": "^2.3",
 		"gathercontent/laravel-fractal": "~0.1",
-		"jcf/geocode": "1.0.*",
-		"lahaxearnaud/laravel-token": "~0.5"
-
+		"lucadegasperi/oauth2-server-laravel": "^3.0"
 	},
 	"require-dev": {
     	"way/generators": "~2.0"

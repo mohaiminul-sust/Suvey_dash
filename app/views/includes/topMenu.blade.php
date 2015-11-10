@@ -4,7 +4,7 @@
               <div data-original-title="Toggle Navigation" data-placement="right" class="fa fa-bars tooltips"></div>
           </div>
           <!--logo start-->
-          <a href="{{ URL::route('dashboard') }}" class="logo" >messive<span>lab</span></a>
+          <a href="{{ URL::route('dashboard') }}" class="logo" >survey<span>admin</span></a>
           <!--logo end-->
           <div class="nav notify-row" id="top_menu">
             <!--  notification start -->
@@ -227,9 +227,9 @@
                       </a>
                       <ul class="dropdown-menu extended logout">
                           <div class="log-arrow-up"></div>
-                          <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                          <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                          <li><a href="#"><i class="fa fa-bell-o"></i> Notification</a></li>
+                          <li><a href="{{ URL::route('getSurvaysDone') }}"><i class=" fa fa-suitcase"></i>Surveys Done</a></li>
+                          <li><a href="{{ URL::route('surveys') }}"><i class="fa fa-cog"></i>Manage Surveys</a></li>
+                          <li><a href="{{ URL::route('guests') }}"><i class="fa fa-bell-o"></i> Response</a></li>
                           <li><a href="{{ URL::route('logout') }}"><i class="fa fa-key"></i> Log Out</a></li>
                       </ul>
                   </li>
