@@ -125,7 +125,7 @@ return array(
 		'Intervention\Image\ImageServiceProvider',
 		'GatherContent\LaravelFractal\LaravelFractalServiceProvider',
 		'Jcf\Geocode\GeocodeServiceProvider',
-		'Lahaxearnaud\LaravelToken\LaravelTokenServiceProvider',
+		'Chrisbjr\ApiGuard\ApiGuardServiceProvider',
 	),
 
 	/*
@@ -194,8 +194,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Image' 		  => 'Intervention\Image\Facades\Image',
 		'Fractal' 		  => 'GatherContent\LaravelFractal\LaravelFractalFacade',
-		'Geocode'         => 'Jcf\Geocode\Facades\Geocode',
-		'Token' 		  => 'Lahaxearnaud\LaravelToken\LaravelTokenFacade',
+		'Geocode'         => 'Jcf\Geocode\Facades\Geocode'
 
 	),
 

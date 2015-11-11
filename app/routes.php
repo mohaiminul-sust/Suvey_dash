@@ -18,6 +18,10 @@ Route::get('/', ['as'=>'index','uses' => 'PublicController@home']);
 
 Route::group(['prefix'=>'api/v1'], function(){
 
+	Route::post('login', 'UserApiController@authenticate');
+	Route::get('userinfo', 'UserApiController@getUserDetails');
+	Route::get('logout', 'UserApiController@deauthenticate');
+
 	Route::get('surveys', 'ApiSurveysController@index');
 	Route::get('surveys/{id}', 'ApiSurveysController@show');
 	

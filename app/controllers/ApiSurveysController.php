@@ -1,8 +1,9 @@
 <?php
 
 use Optimus\Surveys\SurveyTransformer;
+use Chrisbjr\ApiGuard\Controllers\ApiGuardController;
 
-class ApiSurveysController extends \BaseController {
+class ApiSurveysController extends ApiGuardController {
 
 
 	/**
@@ -10,6 +11,12 @@ class ApiSurveysController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	// protected $apiMethods = [
+ //        'index' => [
+ //            'keyAuthentication' => false
+ //        ],
+ //    ];
+
 	public function index()
 	{
 		$surveys = Survey::all(); 
