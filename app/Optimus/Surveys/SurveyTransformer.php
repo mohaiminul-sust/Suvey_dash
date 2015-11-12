@@ -4,11 +4,11 @@ use League\Fractal\TransformerAbstract;
 
 class SurveyTransformer extends TransformerAbstract {
 
-    public function transform(\Survey $survey)
-    {
+    public function transform(\Survey $survey) {
+    	
         return [
             'index'     => (int) $survey->id,
-            'title' => $survey->title,
+            'title' 	=> $survey->title,
             'creation date'  => $survey->created_at
         ];
     }

@@ -3,6 +3,7 @@
 use Chrisbjr\ApiGuard\Controllers\ApiGuardController;
 use Chrisbjr\ApiGuard\Models\ApiKey;
 use Chrisbjr\ApiGuard\Transformers\ApiKeyTransformer;
+use Optimus\GuestUsers\GuestUserTransformer;
 
 /**
 * 
@@ -17,9 +18,55 @@ class UserApiController extends ApiGuardController{
 	protected $apiMethods = [
 		'authenticate' => [
 			'keyAuthentication' => false
-		]
+		],
+
+        'create' => [
+            'keyAuthentication' => false
+        ]
 	];
 
+    public function create(){
+
+        $user_cred = Input::all();
+
+        $validator = Validator::make( $user_cred, GuestUser::$rules);
+
+        if($validator->passes()){
+            $user = new GuestUser;
+
+            $passcode = Input::get('password');
+            $user->email = Input::get('email');
+            $user->password = Hash::make($passcode);
+            $user->save();
+
+            $guest = GuestUser::find($user->id);
+
+            if($guest){
+                
+                return Response::json([
+                    'success' => [
+                        'message' => 'Account Created Successfully !',
+                        'status_code' => 201,
+                        'data' => Fractal::item($guest, new GuestUserTransformer)
+                    ]
+                ], 201);    
+                
+            }
+
+            return Response::json([
+                    'error' => [
+                        'message' => 'Account Creation Error !',
+                        'status_code' => 200
+                    ]
+            ], 200);
+
+
+
+        }
+
+        return $this->response->errorWrongArgsValidator($validator);
+
+    }
 
 	public function authenticate(){
 		// $credentials = Input::all();
@@ -28,32 +75,32 @@ class UserApiController extends ApiGuardController{
   //       $credentials['password'] = 'admindev';
 
 		$credentials = [
-			'username' => Input::get('username'),
+			'email' => Input::get('email'),
 			'password' => Input::get('password')
 		];
 
 		$apiuserRules = [
-            'username' => 'required|max:255',
-            'password' => 'required|max:255'
+            'email' => 'required|email|unique:users',
+            'password' => 'required|alpha_num|between:8,12'
         ];
 
-        $validator = Validator::make( $credentials, $apiuserRules);
+        // $validator = Validator::make( $credentials, $apiuserRules);
 
-        if ($validator->fails()) {
-            return $this->response->errorWrongArgsValidator($validator);
-        }
+        // if ($validator->fails()) {
+        //     return $this->response->errorWrongArgsValidator($validator);
+        // }
 
         try {
-            $user = User::whereUsername($credentials['username'])->first();
+            $user = GuestUser::where('email', $credentials['email'])->first();
             // $credentials['email'] = $user->email;
         } catch (\ErrorException $e) {
-            return $this->response->errorUnauthorized("Your username or password is uncorrect");
+            return $this->response->errorUnauthorized("Your email or password is uncorrect");
         }
 
-        if (Auth::attempt($credentials) == false)
+        if (!$user)
 		{
 
-		    return $this->response->errorUnauthorized("Your username or password is incorrect");
+		    return $this->response->errorUnauthorized("Your email or password is incorrect");
 
 		}
 
@@ -81,9 +128,16 @@ class UserApiController extends ApiGuardController{
 
 
 	public function getUserDetails() {
-        $user = $this->apiKey->user;
+        $user = $this->apiKey->guestUser;
 
-        return isset($user) ? $user : $this->response->errorNotFound();
+
+        if($user){
+            // return $user;
+            return Fractal::item($user, new GuestUserTransformer);
+        } 
+
+        return $this->response->errorNotFound();
+    
     }
 
     public function deauthenticate() {
@@ -92,14 +146,28 @@ class UserApiController extends ApiGuardController{
             return $this->response->errorUnauthorized("There is no such user to deauthenticate.");
         }
 
-        $this->apiKey->delete();
 
-        return $this->response->withArray([
-            'ok' => [
-                'code'      => 'SUCCESSFUL',
-                'http_code' => 200,
-                'message'   => 'User was successfuly deauthenticated'
+        // return $this->apiKey->guestUser;
+        $key = ApiKey::find($this->apiKey->id);
+
+        if($key){
+            
+            ApiKey::destroy($this->apiKey->id);
+
+            return Response::json([
+                'success' => [
+                    'message' => 'User deauthenticated Successfully !',
+                    'status_code' => 200
+                ]
+            ], 200);
+        }
+
+        return Response::json([
+            'error' => [
+                'message' => 'User not found !',
+                'status_code' => 404
             ]
-        ]);
+        ], 404);
+        
     }
 }

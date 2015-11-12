@@ -10,10 +10,12 @@ class GuestUser extends \Eloquent {
 
 	public static $rules = [
 		'email' => 'required|email|unique:users',
-		'password' => 'required|alpha_num|between:8,12'
+		'password' => 'required|alpha_num|between:8,12|confirmed',
+		'password_confirmation' => 'required|alpha_num|between:8,12'
 	];
 
 	public function getGuestCreatedDate(){
+		
 		return $this->created_at->format('d.m.Y');
 	}	
 

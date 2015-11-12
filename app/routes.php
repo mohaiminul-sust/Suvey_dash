@@ -11,20 +11,18 @@
 |
 */
 
-// Route::when('*', 'csrf', ['post', 'put', 'patch']);
-// App::bind('League\Fractal\Serializer\SerializerAbstract', 'League\Fractal\Serializer\DataArraySerializer');
-
 Route::get('/', ['as'=>'index','uses' => 'PublicController@home']);
 
 Route::group(['prefix'=>'api/v1'], function(){
 
-	Route::post('login', 'UserApiController@authenticate');
+	Route::post('signin', 'UserApiController@authenticate');
 	Route::get('userinfo', 'UserApiController@getUserDetails');
-	Route::get('logout', 'UserApiController@deauthenticate');
+	Route::get('signout', 'UserApiController@deauthenticate');
+	Route::post('signup', 'UserApiController@create');
 
-	Route::get('surveys', 'ApiSurveysController@index');
-	Route::get('surveys/{id}', 'ApiSurveysController@show');
-	
+	Route::get('surveys', 'SurveyApiController@index');
+	Route::get('surveys/{id}', 'SurveyApiController@show');
+		
 });
 
 Route::group(['before' => 'guest'], function (){

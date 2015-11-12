@@ -3,7 +3,7 @@
 use Optimus\Surveys\SurveyTransformer;
 use Chrisbjr\ApiGuard\Controllers\ApiGuardController;
 
-class ApiSurveysController extends ApiGuardController {
+class SurveyApiController extends ApiGuardController {
 
 
 	/**
