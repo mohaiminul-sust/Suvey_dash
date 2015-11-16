@@ -10,8 +10,8 @@ class QuestionTransformer extends TransformerAbstract {
         
         return [
             'index'     	=> (int) $question->id,
-            'type' 			=> (string)$question->type,
-            'body'      	=> (string)$question->body,
+            'type' 			=> (string) $question->type,
+            'question'      => (string) $question->body,
             'creation date' => $question->created_at,
             'update date'   => $question->updated_at,
             'choices' 		=> $question->getChoices(),
