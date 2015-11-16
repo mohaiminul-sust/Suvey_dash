@@ -1,9 +1,9 @@
 <?php
 
-use Optimus\Surveys\SurveyTransformer;
+use Optimus\Questions\QuestionTransformer;
 use Chrisbjr\ApiGuard\Controllers\ApiGuardController;
 
-class SurveyApiController extends ApiGuardController {
+class QuestionApiController extends ApiGuardController {
 
 
 
@@ -18,17 +18,11 @@ class SurveyApiController extends ApiGuardController {
  //        ],
  //    ];
 
-	public function index()
+	public function index($survey_id)
 	{
-		//User based filtering
-		// $user = $this->apiKey->guestUser;
-		// $survey_ids = TrackSurvey::where('users_id', $user->id)->lists('surveys_id');
-		// $surveys = Survey::find($survey_ids); 
+		$questions = Survey::find($survey_id)->questions;
 
-		//all
-		$surveys = Survey::all();
-
-		return Fractal::collection($surveys, new SurveyTransformer);
+		return Fractal::collection($questions, new QuestionTransformer);
 	}
 
 
@@ -38,11 +32,11 @@ class SurveyApiController extends ApiGuardController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($survey_id, $id)
 	{
-		$survey = Survey::find($id);
-
-	    if (!$survey)
+		$question = Question::where('surveys_id', $survey_id)->where('id', $id)->first();
+		
+	    if (!$question)
 	    {
 	        return Response::json([
 	            'error' => [
@@ -52,7 +46,7 @@ class SurveyApiController extends ApiGuardController {
 	        ], 404);
 	    }
 
-	    return Fractal::item($survey, new SurveyTransformer());
+	    return Fractal::item($question, new QuestionTransformer);
 	}
 
 

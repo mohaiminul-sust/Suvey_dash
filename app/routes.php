@@ -22,6 +22,10 @@ Route::group(['prefix'=>'api/v1'], function(){
 
 	Route::get('surveys', 'SurveyApiController@index');
 	Route::get('surveys/{id}', 'SurveyApiController@show');
+
+	Route::get('surveys/{survey_id}/questions', 'QuestionApiController@index');
+	Route::get('surveys/{survey_id}/questions/{id}', 'QuestionApiController@show');
+
 		
 });
 

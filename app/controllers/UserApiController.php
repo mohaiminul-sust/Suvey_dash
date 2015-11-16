@@ -47,7 +47,7 @@ class UserApiController extends ApiGuardController{
                     'success' => [
                         'message' => 'Account Created Successfully !',
                         'status_code' => 201,
-                        'data' => Fractal::item($guest, new GuestUserTransformer)
+                        'userinfo' => Fractal::item($guest, new GuestUserTransformer)
                     ]
                 ], 201);    
                 
@@ -56,9 +56,9 @@ class UserApiController extends ApiGuardController{
             return Response::json([
                     'error' => [
                         'message' => 'Account Creation Error !',
-                        'status_code' => 200
+                        'status_code' => 500    
                     ]
-            ], 200);
+            ], 500);
 
 
 
