@@ -69,40 +69,30 @@ class UserApiController extends ApiGuardController{
     }
 
 	public function authenticate(){
-		// $credentials = Input::all();
-
-		// $credentials['username'] = 'Friedrich';
-  //       $credentials['password'] = 'admindev';
 
 		$credentials = [
 			'email' => Input::get('email'),
 			'password' => Input::get('password')
 		];
 
-		$apiuserRules = [
-            'email' => 'required|email|unique:users',
-            'password' => 'required|alpha_num|between:8,12'
-        ];
-
-        // $validator = Validator::make( $credentials, $apiuserRules);
-
-        // if ($validator->fails()) {
-        //     return $this->response->errorWrongArgsValidator($validator);
-        // }
 
         try {
             $user = GuestUser::where('email', $credentials['email'])->first();
             // $credentials['email'] = $user->email;
         } catch (\ErrorException $e) {
-            return $this->response->errorUnauthorized("Your email or password is uncorrect");
+            return $this->response->errorUnauthorized("Your email is incorrect");
         }
 
         if (!$user)
 		{
 
-		    return $this->response->errorUnauthorized("Your email or password is incorrect");
+		    return $this->response->errorUnauthorized("Your email is incorrect");
 
-		}
+		}else if(!Hash::check($credentials['password'], $user->password)){
+
+            return $this->response->errorUnauthorized("Your password is incorrect"); 
+        
+        }
 
 
 		$apiKey = ApiKey::where('user_id', '=', $user->id)->first();
