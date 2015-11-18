@@ -83,12 +83,7 @@ class UserApiController extends ApiGuardController{
             return $this->response->errorUnauthorized("Your email is incorrect");
         }
 
-        if (!$user)
-		{
-
-		    return $this->response->errorUnauthorized("Your email is incorrect");
-
-		}else if(!Hash::check($credentials['password'], $user->password)){
+        if(!Hash::check($credentials['password'], $user->password)){
 
             return $this->response->errorUnauthorized("Your password is incorrect"); 
         

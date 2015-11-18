@@ -14,21 +14,19 @@ class SurveyTransformer extends TransformerAbstract {
     	
         return [
             'index'     => (int) $survey->id,
-            'title' 	=> $survey->title,
-            'creator'   => $survey->user->username,
+            'title' 	=> (string)$survey->title,
+            'creator'   => (string)$survey->user->username,
+            'taken'     => (bool)$survey->is_taken,
             'creation date'  => $survey->created_at,
-            'links' => [
-            	[
-            		'rel' => 'self',
-            		'uri' => '/surveys/'.$survey->id,
-            	]
-            ]
+            'links'     =>  [
+                            	[
+                            		'rel' => 'self',
+                            		'uri' => '/surveys/'.$survey->id,
+                            	]
+                            ]
+            
         ];
     }
-
-    // public function includeCreator(\Survey $survey){
-    // 	$user 
-    // }
 
     public function includeQuestions(\Survey $survey)
     {
