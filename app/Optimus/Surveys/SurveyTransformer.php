@@ -17,8 +17,8 @@ class SurveyTransformer extends TransformerAbstract {
             'title' 	        => (string)$survey->title,
             'creator'           => (string)$survey->user->username,
             'taken'             => (bool)$survey->is_taken,
-            'mcq count'         => $survey->mcq_count,
-            'written count'     => $survey->wr_count,
+            'mcq count'         => (int)$survey->mcq_count,
+            'written count'     => (int)$survey->wr_count,
             'creation date'     => $survey->getSurveyCreatedDate(),
             'links'             =>  [
                                     	[
