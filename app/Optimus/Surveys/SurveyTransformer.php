@@ -6,24 +6,26 @@ use Optimus\Questions\QuestionTransformer;
 
 class SurveyTransformer extends TransformerAbstract {
 
-	protected $availableIncludes = [
-        'questions'
-    ];
+	// protected $availableIncludes = [
+ //        'questions'
+ //    ];
 
     public function transform(\Survey $survey) {
     	
         return [
-            'index'     => (int) $survey->id,
-            'title' 	=> (string)$survey->title,
-            'creator'   => (string)$survey->user->username,
-            'taken'     => (bool)$survey->is_taken,
-            'creation date'  => $survey->created_at,
-            'links'     =>  [
-                            	[
-                            		'rel' => 'self',
-                            		'uri' => '/surveys/'.$survey->id,
-                            	]
-                            ]
+            'index'             => (int) $survey->id,
+            'title' 	        => (string)$survey->title,
+            'creator'           => (string)$survey->user->username,
+            'taken'             => (bool)$survey->is_taken,
+            'mcq count'         => $survey->mcq_count,
+            'written count'     => $survey->wr_count,
+            'creation date'     => $survey->getSurveyCreatedDate(),
+            'links'             =>  [
+                                    	[
+                                    		'rel' => 'self',
+                                    		'uri' => '/surveys/'.$survey->id,
+                                    	]
+                                    ]
             
         ];
     }

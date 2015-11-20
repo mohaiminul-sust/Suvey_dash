@@ -33,5 +33,5 @@ class Question extends \Eloquent {
 		
 		return $tempAra;
 	}
-
+	
 }

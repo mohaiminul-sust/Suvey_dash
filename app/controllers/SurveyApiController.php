@@ -23,13 +23,20 @@ class SurveyApiController extends ApiGuardController {
 		//User based filtering
 		$user = $this->apiKey->guestUser;
 		$survey_ids_taken = TrackSurvey::where('users_id', $user)->distinct()->lists('surveys_id');
+
+		//Question count
+
 		
 		//inserting custom key-val
 		$surveys = Survey::all();
 		foreach($surveys as $survey){
 			$survey->is_taken = in_array($survey->id, $survey_ids_taken) ? '1':'0';
+			$survey->mcq_count = Question::where('surveys_id', $survey->id)->where('type', 'mcq')->count();
+			$survey->wr_count = Question::where('surveys_id', $survey->id)->where('type', 'written')->count();
+					
 		}
 
+		// return $surveys;
 		return Fractal::collection($surveys, new SurveyTransformer);
 	}
 
