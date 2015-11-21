@@ -6,5 +6,10 @@ class TrackSurvey extends \Eloquent {
 
 	protected $fillable = ['lat', 'lon'];
 
+	public static $rules = [
+		'lat' => 'required|numeric',
+		'lon' => 'required|numeric'
+	];
+
 
 }

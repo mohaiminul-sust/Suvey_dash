@@ -6,9 +6,9 @@ use Optimus\Questions\QuestionTransformer;
 
 class SurveyTransformer extends TransformerAbstract {
 
-	// protected $availableIncludes = [
- //        'questions'
- //    ];
+	protected $availableIncludes = [
+        'questions'
+    ];
 
     public function transform(\Survey $survey) {
     	
