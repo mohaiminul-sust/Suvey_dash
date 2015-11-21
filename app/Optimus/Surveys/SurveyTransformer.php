@@ -13,6 +13,7 @@ class SurveyTransformer extends TransformerAbstract {
     public function transform(\Survey $survey) {
     	
         return [
+        
             'index'             => (int) $survey->id,
             'title' 	        => (string)$survey->title,
             'creator'           => (string)$survey->user->username,
