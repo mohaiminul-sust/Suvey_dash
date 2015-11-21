@@ -33,7 +33,7 @@ class SurveyApiController extends ApiGuardController {
 			$survey->is_taken = in_array($survey->id, $survey_ids_taken) ? '1':'0';
 			$survey->mcq_count = Question::where('surveys_id', $survey->id)->where('type', 'mcq')->count();
 			$survey->wr_count = Question::where('surveys_id', $survey->id)->where('type', 'written')->count();
-					
+			$survey->taken_by = TrackSurvey::where('surveys_id', $survey->id)->groupBy('users_id')->lists('users_id');			
 		}
 
 		// return $surveys;
@@ -47,8 +47,11 @@ class SurveyApiController extends ApiGuardController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
-	{
+	public function show($id){
+
+		$user = $this->apiKey->guestUser;
+		$survey_ids_taken = TrackSurvey::where('users_id', $user)->distinct()->lists('surveys_id');
+
 		$survey = Survey::find($id);
 
 	    if (!$survey)
@@ -60,6 +63,11 @@ class SurveyApiController extends ApiGuardController {
 	            ]
 	        ], 404);
 	    }
+
+	    $survey->is_taken = in_array($survey->id, $survey_ids_taken) ? '1':'0';
+		$survey->mcq_count = Question::where('surveys_id', $survey->id)->where('type', 'mcq')->count();
+		$survey->wr_count = Question::where('surveys_id', $survey->id)->where('type', 'written')->count();
+		$survey->taken_by = TrackSurvey::where('surveys_id', $survey->id)->groupBy('users_id')->lists('users_id');	
 
 	    return Fractal::item($survey, new SurveyTransformer());
 	}

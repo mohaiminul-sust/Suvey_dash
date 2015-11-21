@@ -15,6 +15,12 @@ class QuestionTransformer extends TransformerAbstract {
             'creation date' => $question->created_at,
             'update date'   => $question->updated_at,
             'choices' 		=> $question->getChoices(),
+            'links'             =>  [
+                                        [
+                                            'rel' => 'self',
+                                            'uri' => '/questions/'.$question->id,
+                                        ]
+                                    ]
         ];
     }
 
