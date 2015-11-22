@@ -17,6 +17,7 @@ class CreateTrackSurveysTable extends Migration {
 			$table->increments('id');
 			$table->string('lat');
 			$table->string('lon');
+			$table->string('timetaken');
 			$table->timestamps();
 		});
 	}

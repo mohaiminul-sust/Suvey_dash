@@ -17,6 +17,7 @@ class TrackSurveysTableSeeder extends Seeder {
             TrackSurvey::create([
                 'lat' => $faker->latitude,
                 'lon' => $faker->longitude,
+                'timetaken' => $faker->date,
                 'surveys_id' => $faker->randomElement($surveys_id),
                 'users_id' => $faker->randomElement($users_id)
 
