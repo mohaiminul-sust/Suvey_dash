@@ -92,6 +92,7 @@ class SurveyApiController extends ApiGuardController {
 				$trackSurvey->surveys_id = $id;
 				$trackSurvey->lat = Input::get('lat');
 				$trackSurvey->lon = Input::get('lon');
+				$trackSurvey->timetaken = Input::get('timetaken');
 
 				try {
 					
@@ -99,9 +100,8 @@ class SurveyApiController extends ApiGuardController {
 
 					foreach ($surveyAnswers as $surveyAnswer) {
 						
-						// return $surveyAnswer['body'];
 						$answer = new Answer;
-						$answer->body = $surveyAnswer['body'];
+						$answer->body = $surveyAnswer['answer'];
 						$answer->questions_id = $surveyAnswer['questions_id'];
 						$answer->users_id = $user->id;
 						$answer->save();

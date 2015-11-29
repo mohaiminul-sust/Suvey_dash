@@ -9,9 +9,9 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		// if(App::environment() === 'production'){
-		// 	exit('Application in production Mode ! No can do!!');
-		// }
+		if(App::environment() === 'production'){
+			exit('Application in production Mode !!!');
+		}
 
 
 		Eloquent::unguard(); //mass assignment enabler

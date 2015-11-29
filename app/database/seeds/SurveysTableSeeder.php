@@ -13,7 +13,7 @@ class SurveysTableSeeder extends Seeder {
         foreach (range(1, 10) as $i) {
             
             Survey::create([
-                'title' => $faker->lexify('??? survey'),
+                'title' => $faker->lexify($faker->firstname.' survey'),
                 'admin_users_id' => $faker->randomElement($admin_users_id)
             ]);
         }

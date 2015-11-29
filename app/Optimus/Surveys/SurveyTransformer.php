@@ -15,7 +15,7 @@ class SurveyTransformer extends TransformerAbstract {
         return [
         
             'index'             => (int) $survey->id,
-            'title' 	        => (string)$survey->title,
+            'title' 	        => ucfirst((string)$survey->title),
             'creator'           => (string)$survey->user->username,
             'taken'             => (bool)$survey->is_taken,
             'taken by'          => (int)count($survey->taken_by),

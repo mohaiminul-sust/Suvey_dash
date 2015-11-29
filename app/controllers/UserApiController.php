@@ -77,10 +77,13 @@ class UserApiController extends ApiGuardController{
 
 
         try {
+
             $user = GuestUser::where('email', $credentials['email'])->first();
-            // $credentials['email'] = $user->email;
+
         } catch (\ErrorException $e) {
+
             return $this->response->errorUnauthorized("Your email is incorrect");
+        
         }
 
         if(!Hash::check($credentials['password'], $user->password)){

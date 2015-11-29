@@ -28,7 +28,7 @@ class Question extends \Eloquent {
 		$tempAra= [];
 
 		foreach ($this->choices as $child) {
-			$tempAra[] = $child->choice;
+			$tempAra[] = ucfirst((string)$child->choice);
 		}
 		
 		return $tempAra;
