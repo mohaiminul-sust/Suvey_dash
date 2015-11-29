@@ -1,5 +1,6 @@
 /bootstrap/compiled.php
-/vendor
+/vendor/*
+!vendor/gathercontent/
 composer.phar
 composer.lock
 .env.*.php
