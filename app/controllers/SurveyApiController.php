@@ -22,10 +22,10 @@ class SurveyApiController extends ApiGuardController {
 	{
 		//User based filtering
 		$user = $this->apiKey->guestUser;
-		$survey_ids_taken = TrackSurvey::where('users_id', $user)->distinct()->lists('surveys_id');
+		$survey_ids_taken = TrackSurvey::where('users_id', $user->id)->groupBy('surveys_id')->lists('surveys_id');
 
 		//Question count
-
+		// return $survey_ids_taken;
 		
 		try {
 			//inserting custom key-val

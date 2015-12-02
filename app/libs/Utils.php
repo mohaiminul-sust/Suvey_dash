@@ -22,28 +22,28 @@ class Utils{
 	//Works for googles reverse-geocoding
 	public static function getAddressFromCoordinates($lat, $lon) {
 
-		$url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lon&sensor=false";
+		try {
+			$response = Geocode::make()->latLng($lat,$lon);
+		
+			if ($response) {
+			    // echo $response->latitude();
+			    // echo $response->longitude();
+			    echo $response->formattedAddress();
+			    // echo $response->locationType();
+			}
+		} catch (Exception $e) {
+			
+			echo "Decoding error!";
+		}
 
-		// Make the HTTP request
-		$data = @file_get_contents($url);
-		// Parse the json response
-		$jsondata = json_decode($data,true);
-
-		// If the json data is invalid, return empty array
-		// if (!check_status($jsondata))   return array();
-
-		$address = array(
-		    'country' => google_getCountry($jsondata),
-		    'province' => google_getProvince($jsondata),
-		    'city' => google_getCity($jsondata),
-		    'street' => google_getStreet($jsondata),
-		    'postal_code' => google_getPostalCode($jsondata),
-		    'country_code' => google_getCountryCode($jsondata),
-		    'formatted_address' => google_getAddress($jsondata),
-		);
-
-		return $address['city'].' ,'.$address['country'];
 	}
 
+
+	public static function getTimeFromMilis($mil){
+
+		$seconds = $mil / 1000;
+		echo date("H:i:s", $seconds);
+
+	} 
 		
 }

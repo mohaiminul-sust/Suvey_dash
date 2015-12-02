@@ -10,7 +10,7 @@ class SurveysTableSeeder extends Seeder {
 
         $admin_users_id = User::all()->lists('id');
 
-        foreach (range(1, 10) as $i) {
+        foreach (range(1, 25) as $i) {
             
             Survey::create([
                 'title' => $faker->lexify($faker->firstname.' survey'),

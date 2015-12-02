@@ -38,39 +38,30 @@ class GuestUsersController extends BaseController{
 			
 			$survey_ids = Survey::where('admin_users_id', Auth::user()->id)->lists('id');
 			$trackSurveys = DB::table('track_surveys')->where('users_id', $guest_id)->whereIn('surveys_id', $survey_ids)->get();
-			// return $trackSurveys;
-			// if($trackSurveys->isEmpty()){
-				
-			// 	return Redirect::back()->withError('No survey completed yet!');
-				
-			// }
+			
 			return View::make('guest.survey')->with('track_surveys' ,$trackSurveys)->withGuest(GuestUser::find($guest_id));
 
 		}
-
-
 	}
 
 	public function showGuestSurveyAnswer($guest_id, $survey_id){
-		// return 'Do code '.$guest_id.' '.$survey_id;
 
 		$guest = GuestUser::find($guest_id);
 		$survey = Survey::find($survey_id);
-		$trackSurvey = DB::table('track_surveys')->where('users_id', $guest_id)->where('surveys_id', $survey_id)->get();
+		$trackSurvey = TrackSurvey::where('users_id', $guest_id)->where('surveys_id', $survey_id)->get();
 		// return $trackSurvey;
-
 		return View::make('guest.answers')->with('track_survey', $trackSurvey)->withSurvey($survey)->withGuest($guest);
 	}
 
 	public function destroy(){
-		// dd(Input::all());
+
 		$guest = GuestUser::find(Input::get('guestId'));
 
 		if($guest){
 
 			$guest->delete();
-
 			return Redirect::back()->withSuccess('Guest deleted !');
+		
 		}
 
 		return Redirect::back()->withError('Can\'t delete guest !');

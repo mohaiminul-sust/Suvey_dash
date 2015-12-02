@@ -128,14 +128,61 @@ class UserApiController extends ApiGuardController{
     
     }
 
+    public function changePassword(){
+        $user = $this->apiKey->guestUser;
+        // return $user;
+
+        $credentials = [
+            'password' => Input::get('password'),
+            'password_confirmation' => Input::get('password_confirmation'),
+        ];
+
+        $validator = Validator::make($credentials, GuestUser::$api_chpass_rules);
+
+        if($validator->fails()){
+
+            return $this->response->errorWrongArgsValidator($validator);
+        
+        }
+
+        if(!Input::has('password_old')){
+
+            return $this->response->errorUnauthorized("Insert old password"); 
+
+        }
+
+        if(!Hash::check(Input::get('password_old'), $user->password)){
+
+            return $this->response->errorUnauthorized("Your old password is incorrect");
+        }
+
+        try {
+
+            $user->password = Hash::make($credentials['password']);
+            $user->save();
+
+            return Response::json([
+                'success' => [
+                    'message' => 'User password changed successfully!',
+                    'status_code' => 200,
+                    'password_new' => $credentials['password']
+                ]
+            ], 200);
+
+        } catch (Exception $e) {
+            
+            return $this->response->errorInternalError('Password can\'t be saved');
+        
+        }
+
+    }
+
     public function deauthenticate() {
 
         if (empty($this->apiKey)) {
             return $this->response->errorUnauthorized("There is no such user to deauthenticate.");
         }
 
-
-        // return $this->apiKey->guestUser;
         $key = ApiKey::find($this->apiKey->id);
 
         if($key){
@@ -150,12 +197,7 @@ class UserApiController extends ApiGuardController{
             ], 200);
         }
 
-        return Response::json([
-            'error' => [
-                'message' => 'User not found !',
-                'status_code' => 404
-            ]
-        ], 404);
+        return $this->response->errorNotFound();
         
     }
 }

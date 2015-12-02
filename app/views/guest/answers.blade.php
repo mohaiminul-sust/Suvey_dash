@@ -36,7 +36,10 @@
 						<p><span class="bold">Completed at</span>: {{ $track_survey[0]->created_at }}</p>
 					</div>
 					<div class="bio-row">
-						<p><span class="bold">Guest Location</span>: {{ $track_survey[0]->lat }}, {{ $track_survey[0]->lon }}</p>
+						<p><span class="bold">Guest Location</span>: {{ Utils::getAddressFromCoordinates($track_survey[0]->lat,$track_survey[0]->lon) }}</p>
+					</div>
+					<div class="bio-row">
+						<p><span class="bold">Time Elapsed</span>: {{ Utils::getTimeFromMilis($track_survey[0]->timetaken) }}</p>
 					</div>
 				</div>
 

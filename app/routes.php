@@ -19,6 +19,7 @@ Route::group(['prefix'=>'api/v1'], function(){
 	Route::get('userinfo', 'UserApiController@getUserDetails');
 	Route::get('signout', 'UserApiController@deauthenticate');
 	Route::post('signup', 'UserApiController@create');
+	Route::post('changepass', 'UserApiController@changePassword');
 
 	Route::get('surveys', 'SurveyApiController@index');
 	Route::get('surveys/{id}', 'SurveyApiController@show');
