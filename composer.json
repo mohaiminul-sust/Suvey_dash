@@ -9,7 +9,8 @@
 		"intervention/image": "^2.3",
 		"gathercontent/laravel-fractal": "~0.1",
 		"jcf/geocode": "1.0.*",
-		"chrisbjr/api-guard": "~1.0"
+		"chrisbjr/api-guard": "~1.0",
+		"ellipsesynergie/api-response": "0.8.*"
 	},
 	"require-dev": {
     	"way/generators": "~2.0"

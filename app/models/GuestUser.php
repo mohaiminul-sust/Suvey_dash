@@ -21,7 +21,7 @@ class GuestUser extends \Eloquent {
 
 	public function getSurveyTakenCount($guestId){
 
-		return TrackSurvey::where('users_id', $guestId)->count();
+		return TrackSurvey::where('users_id', $guestId)->groupBy('surveys_id')->get()->count();
 	}
 
 }
